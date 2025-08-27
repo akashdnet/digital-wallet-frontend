@@ -72,7 +72,7 @@ interface Navbar1Props {
   ],
   auth = {
     login: { title: "Login", url: "/login" },
-    signup: { title: "Sign up", url: "/signup" },
+    signup: { title: "Sign up", url: "/auth" },
   },
 }: Navbar1Props) => {
   return (

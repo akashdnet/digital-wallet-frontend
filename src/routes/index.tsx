@@ -1,6 +1,7 @@
 import App from "@/App";
 import { Loader } from "@/components/loader";
 import TestComponent from "@/components/TestComponent";
+import Login from "@/pages/login.page";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
@@ -19,11 +20,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "login",
-        element: <TestComponent name="login" />,
+        Component: Login
       },
       {
-        path: "signup",
-        element: <TestComponent name="signup" />,
+        path: "register",
+        element: <TestComponent name="Register" />,
       },
       {
         path: "loader",
