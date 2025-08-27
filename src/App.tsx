@@ -1,13 +1,12 @@
-import "./App.css";
-
-import { Button } from "@/components/ui/button"
+import CommonLayout from "@/components/layout/CommonLayout";
+import { Outlet } from "react-router"; //
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-  )
+    <CommonLayout>
+      <Outlet /> 
+    </CommonLayout>
+  );
 }
 
-export default App
+export default App;
