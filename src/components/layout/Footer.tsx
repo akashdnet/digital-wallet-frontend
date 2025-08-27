@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 export default function Footer() {
   return (
-    <footer className="bg-background border-t py-8">
+    <footer className="bg-background border-t py-4">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -37,7 +37,6 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <p className="text-muted-foreground text-center md:text-left">
               Bonosree, Rampura, Dhaka<br />
-              Block-G, Road 12345<br />
               Email: info@digitalwallet.com<br />
               Phone: +1888 45886-78090
             </p>
