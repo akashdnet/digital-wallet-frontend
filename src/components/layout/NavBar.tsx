@@ -23,6 +23,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Link } from "react-router";
+import { useMyProfileQuery } from "@/redux/features/user/user.api";
+import { AuthApi, useLogoutMutation } from "@/redux/features/auth/auth.api";
+import { useAppDispatch } from "@/redux/hook";
 
 interface MenuItem {
   title: string;
@@ -50,9 +53,26 @@ interface Navbar1Props {
       url: string;
     };
   };
+  isLogin?: {
+    profile: {
+      title: string;
+      url: string;
+      className: string;
+    };
+    transitions: {
+      title: string;
+      url: string;
+      className: string;
+    };
+    logout: {
+      title: string;
+      url: string;
+      className: string;
+    };
+  };
 }
 
- const Navbar = ({
+const Navbar = ({
   logo = {
     url: "/",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
@@ -74,7 +94,31 @@ interface Navbar1Props {
     login: { title: "Login", url: "/login" },
     signup: { title: "Sign up", url: "/register" },
   },
+  isLogin = {
+    profile: {
+      title: "My Profile",
+      url: "/profile",
+      className: " font-bold",
+    },
+    transitions: {
+      title: "Transitions",
+      url: "/transitions",
+      className: "",
+    },
+    logout: { title: "logout", url: "#", className: "" },
+  },
 }: Navbar1Props) => {
+  const { data, isLoading, error } = useMyProfileQuery(undefined);
+  const [postLogout] = useLogoutMutation(undefined);
+  const dispatch = useAppDispatch();
+
+  console.log(`profile data`, data);
+
+  const handleLogout = async () => {
+    await postLogout(undefined);
+    dispatch(AuthApi.util.resetApiState());
+  };
+
   return (
     <section className="py-4 px-8">
       <div className="container">
@@ -101,12 +145,29 @@ interface Navbar1Props {
             </div>
           </div>
           <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <Link to={auth.login.url}>{auth.login.title}</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link to={auth.signup.url}>{auth.signup.title}</Link>
-            </Button>
+            <ul className="flex gap-2">
+            {data?.data?.email ? (
+              <>
+                {Object.entries(isLogin).map(([key, item]) => (
+                  <li
+                    key={key}
+                    className={item.className}
+                  >
+                    <Link to={item.url}>{item.title}</Link>
+                  </li>
+                ))}
+              </>
+            ) : (
+              <>
+                <Button asChild variant="outline" size="sm">
+                  <Link to={auth.login.url}>{auth.login.title}</Link>
+                </Button>
+                <Button asChild size="sm">
+                  <Link to={auth.signup.url}>{auth.signup.title}</Link>
+                </Button>
+              </>
+            )}
+            </ul>
           </div>
         </nav>
 

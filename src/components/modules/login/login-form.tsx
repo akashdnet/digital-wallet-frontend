@@ -21,12 +21,19 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "sonner";
+import { AuthApi, useLoginMutation } from "@/redux/features/auth/auth.api";
+import { useState } from "react";
+import { useAppDispatch } from "@/redux/hook";
 
 export function LoginForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
+  const [loginError, setLoginError] = useState<string>("");
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  
+  const [postLogin] = useLoginMutation();
 
   const form = useForm({
     defaultValues: {
@@ -36,8 +43,18 @@ export function LoginForm({
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    toast.success("Login credential submitted successfully.");
-    console.log(data);
+
+    try {
+      const res = await postLogin(data).unwrap();
+      toast.success("Logged in successfully.");
+      dispatch(AuthApi.util.resetApiState());
+      // console.log(res);
+      navigate("/");
+    } catch (error:any) {
+      toast.error("Unidentified credential.");
+      setLoginError(error.data.message);
+      // console.log(error)
+    }
   };
 
   return (
@@ -67,7 +84,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-6 w-full">
+        <CardContent className="space-t-6 w-full">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -92,6 +109,10 @@ export function LoginForm({
                         placeholder="john@example.com"
                         {...field}
                         value={field.value || ""}
+                        onChange={(e) => {
+                        field.onChange(e);
+                        setLoginError("");
+                      }}
                       />
                     </FormControl>
                     <FormMessage />
@@ -112,6 +133,12 @@ export function LoginForm({
                         placeholder="********"
                         {...field}
                         value={field.value || ""}
+                        onChange={(e) => {
+                        field.onChange(e);
+                        if (loginError) setLoginError("");
+                      }}
+                        required
+                        minLength={8}
                       />
                     </FormControl>
                     <FormMessage />
@@ -124,9 +151,10 @@ export function LoginForm({
               </Button>
             </form>
           </Form>
+          <h1 className="text-red-500 text-center">{loginError}</h1>
         </CardContent>
 
-        <CardFooter className="flex justify-center">
+        <CardFooter className="flex flex-col justify-center">
           <p className="text-sm">
             Don&apos;t have an account?{" "}
             <Link

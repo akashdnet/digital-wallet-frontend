@@ -3,6 +3,8 @@ import { Loader } from "@/components/loader";
 import TestComponent from "@/components/TestComponent";
 import Home from "@/pages/home.page";
 import Login from "@/pages/login.page";
+import MyProfile from "@/pages/myProfile";
+import RegisterPage from "@/pages/register.page";
 import { createBrowserRouter } from "react-router";
 
 export const router = createBrowserRouter([
@@ -29,7 +31,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "register",
-        element: <TestComponent name="Register" />,
+        Component: RegisterPage
+      },
+      {
+        path: "profile",
+        Component: MyProfile
       },
       {
         path: "loader",
