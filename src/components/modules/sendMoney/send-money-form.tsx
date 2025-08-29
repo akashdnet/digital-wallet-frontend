@@ -20,13 +20,19 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useSendMoneyMutation } from "@/redux/features/wallet/wallet.api";
+import { useMyProfileQuery } from "@/redux/features/user/user.api";
 
 export function SendMoneyForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
+  const {data:userData} = useMyProfileQuery(undefined);
   const [sendMoneyError, setSendMoneyError] = useState<string>("");
   const [sendMoneyPost, { isLoading , error }] = useSendMoneyMutation()
+
+  if(userData.data.wallet.status != "active" ) {
+    return <h1 className="text-red-900 text-center p-3 bg-red-300 rounded-2xl">Your wallet is not active. Please activate your wallet for sending money.</h1>
+  }
   
 
   const form = useForm({

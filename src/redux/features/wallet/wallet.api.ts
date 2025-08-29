@@ -17,6 +17,7 @@ export const UserApi = baseApi.injectEndpoints({
         method: "POST",
         data
       }),
+      invalidatesTags: ["USER"]
     }),
 
 

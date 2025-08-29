@@ -9,8 +9,9 @@ export function RequireAuth<T extends object>(
   allowedRoles: Role[] = ["user"] // ✅ default fallback
 ) {
   return (props: T) => {
-    const { data: UserData, isLoading } = useMyProfileQuery(undefined);
-    const user = UserData?.data;
+    const { data, isLoading } = useMyProfileQuery(undefined);
+   
+    const user = data?.data?.userInfo;
 
     if (isLoading) {
       return (
@@ -19,6 +20,7 @@ export function RequireAuth<T extends object>(
         </div>
       );
     }
+
 
     if (!user?.email) {
       return <Navigate to="/login" replace />;

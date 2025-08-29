@@ -11,8 +11,8 @@ export default function MyProfile() {
 
 
   return (
-    <>
+    <div className='w-full flex justify-center items-center'>
     {!editMode ? <Preview onEditMode={handleEditMode} /> : <div className='w-full max-w-md mx-auto'><UpdateProfileForm onEditMode={handleEditMode} /></div> }
-    </>
+    </div>
   )
 }

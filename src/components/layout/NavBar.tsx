@@ -117,7 +117,7 @@ const Navbar = ({
   const [postLogout] = useLogoutMutation(undefined);
   const dispatch = useAppDispatch();
 
-  // console.log(`profile data`, data);
+  console.log(`profile data`, data);
 
   const handleLogout = async () => {
     await postLogout(undefined);
@@ -151,7 +151,7 @@ const Navbar = ({
           </div>
           <div className="flex gap-2">
             <ul className="flex gap-3 text-lg items-center  ">
-              {data?.data?.email ? (
+              {data?.data?.userInfo?.email ? (
                 <>
                   {Object.entries(isLogin).map(([key, item]) => (
                     <li
