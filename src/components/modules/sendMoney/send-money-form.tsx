@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useSendMoneyMutation } from "@/redux/features/wallet/wallet.api";
 import { useMyProfileQuery } from "@/redux/features/user/user.api";
+import { useNavigate } from "react-router";
 
 export function SendMoneyForm({
   className,
@@ -29,8 +30,10 @@ export function SendMoneyForm({
   const {data:userData} = useMyProfileQuery(undefined);
   const [sendMoneyError, setSendMoneyError] = useState<string>("");
   const [sendMoneyPost, { isLoading , error }] = useSendMoneyMutation()
+  const navigate = useNavigate();
 
-  if(userData.data.wallet.status != "active" ) {
+
+  if(userData?.data?.userInfo?.wallet?.status != "active" ) {
     return <h1 className="text-red-900 text-center p-3 bg-red-300 rounded-2xl">Your wallet is not active. Please activate your wallet for sending money.</h1>
   }
   
@@ -50,7 +53,7 @@ export function SendMoneyForm({
     try {
       const res = await sendMoneyPost(data).unwrap();
       toast.success("Money sent successfully.", { id: toastId } );
-      // console.log(res);
+      navigate("/transaction");
     } catch (error:any) {
       toast.error("something went wrong.", { id: toastId });
       setSendMoneyError(error.data.message);
