@@ -59,12 +59,12 @@ interface Navbar1Props {
       url: string;
       className: string;
     };
-    transitions: {
+    transaction: {
       title: string;
       url: string;
       className: string;
     };
-    logout: {
+    sendMoney: {
       title: string;
       url: string;
       className: string;
@@ -79,17 +79,18 @@ const Navbar = ({
     alt: "logo",
     title: "Digital Wallet Solution",
   },
-  menu = [
-    { title: "Home", url: "#" },
-    {
-      title: "Pricing",
-      url: "#",
-    },
-    {
-      title: "Blog",
-      url: "#",
-    },
-  ],
+  // menu = [
+  //   { title: "Home", url: "#" },
+  //   {
+  //     title: "Pricing",
+  //     url: "#",
+  //   },
+  //   {
+  //     title: "Blog",
+  //     url: "#",
+  //   },
+  // ],
+  menu = [],
   auth = {
     login: { title: "Login", url: "/login" },
     signup: { title: "Sign up", url: "/register" },
@@ -98,21 +99,25 @@ const Navbar = ({
     profile: {
       title: "My Profile",
       url: "/profile",
-      className: " font-bold",
+      className: " ",
     },
-    transitions: {
-      title: "Transitions",
-      url: "/transitions",
+    transaction: {
+      title: "Transactions",
+      url: "/transaction",
       className: "",
     },
-    logout: { title: "logout", url: "#", className: "" },
+    sendMoney: {
+      title: "Send Money",
+      url: "/send-money",
+      className: "",
+    },
   },
 }: Navbar1Props) => {
   const { data, isLoading, error } = useMyProfileQuery(undefined);
   const [postLogout] = useLogoutMutation(undefined);
   const dispatch = useAppDispatch();
 
-  console.log(`profile data`, data);
+  // console.log(`profile data`, data);
 
   const handleLogout = async () => {
     await postLogout(undefined);
@@ -145,28 +150,39 @@ const Navbar = ({
             </div>
           </div>
           <div className="flex gap-2">
-            <ul className="flex gap-2">
-            {data?.data?.email ? (
-              <>
-                {Object.entries(isLogin).map(([key, item]) => (
-                  <li
-                    key={key}
-                    className={item.className}
-                  >
-                    <Link to={item.url}>{item.title}</Link>
+            <ul className="flex gap-3 text-lg items-center  ">
+              {data?.data?.email ? (
+                <>
+                  {Object.entries(isLogin).map(([key, item]) => (
+                    <li
+                      key={key}
+                      className={` hover:underline cursor-pointer ${item.className} hover:no-underline`}
+                    >
+                      <Link to={item.url}>{item.title}</Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Button
+                      asChild
+                      variant="destructive"
+                      onClick={handleLogout}
+                      className="cursor-pointer ml-5"
+                      size="sm"
+                    >
+                       <span>Logout</span>
+                    </Button>
                   </li>
-                ))}
-              </>
-            ) : (
-              <>
-                <Button asChild variant="outline" size="sm">
-                  <Link to={auth.login.url}>{auth.login.title}</Link>
-                </Button>
-                <Button asChild size="sm">
-                  <Link to={auth.signup.url}>{auth.signup.title}</Link>
-                </Button>
-              </>
-            )}
+                </>
+              ) : (
+                <>
+                  <Button asChild variant="outline" size="sm">
+                    <Link to={auth.login.url}>{auth.login.title}</Link>
+                  </Button>
+                  <Button asChild size="sm">
+                    <Link to={auth.signup.url}>{auth.signup.title}</Link>
+                  </Button>
+                </>
+              )}
             </ul>
           </div>
         </nav>

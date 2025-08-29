@@ -13,6 +13,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ReduxProvider store={store}>
     <RouterProvider router={router} />
     </ReduxProvider>
-     <Toaster richColors position="top-right" />
+     <Toaster richColors position="top-left" />
   </React.StrictMode>
 );

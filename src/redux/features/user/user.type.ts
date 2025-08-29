@@ -24,6 +24,8 @@ export interface TUser {
   agentStatus: string;
   authProviders: TAuthProvider[];
   wallet: TWallet;
+  balance?: number;
+  status?: string;
   createdAt: string;
   updatedAt: string;
   __v: number;

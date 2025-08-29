@@ -26,6 +26,14 @@ export const UserApi = baseApi.injectEndpoints({
     }),
 
 
+    updateMyProfile: builder.mutation({
+      query: (userFormData) => ({
+        url: "/user/me",
+        method: "POST",
+        data: userFormData,
+      }),
+      invalidatesTags: ["USER"],
+    }),
 
 
 
@@ -37,5 +45,6 @@ export const UserApi = baseApi.injectEndpoints({
 
 export const {
     useRegisterMutation,
-  useMyProfileQuery
+  useMyProfileQuery,
+  useUpdateMyProfileMutation,
 } = UserApi;
