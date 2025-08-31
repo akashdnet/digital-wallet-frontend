@@ -8,7 +8,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartOptions
 } from "chart.js"
 import { Line } from "react-chartjs-2"
 import { useDashboardOverviewQuery } from "@/redux/features/admin/admin.api"
@@ -49,7 +50,7 @@ export default function Chart() {
     ]
   }
 
-  const options = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     plugins: {
       legend: { position: "top" },

@@ -7,7 +7,8 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartOptions
 } from "chart.js"
 import { Bar } from "react-chartjs-2"
 import { useDashboardOverviewQuery } from "@/redux/features/admin/admin.api"
@@ -18,7 +19,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 )
 
 const MONTHS_ORDER = [
@@ -30,8 +31,9 @@ export default function Chart2() {
   const { data: overviewData, isLoading, error } = useDashboardOverviewQuery(undefined)
   const transactionStats = overviewData?.data?.transactionStats
 
-  // Default fallback if data not ready yet
-  const labels = MONTHS_ORDER.map(month => month.slice(0, 3)) // Jan, Feb, ...
+  
+
+  const labels = MONTHS_ORDER.map(month => month.slice(0, 3))
   const values = MONTHS_ORDER.map(month => transactionStats?.[month] || 0)
 
   const data = {
@@ -45,7 +47,7 @@ export default function Chart2() {
     ]
   }
 
-  const options = {
+  const options: ChartOptions<"bar">= {
     responsive: true,
     plugins: {
       legend: { position: "top" },
