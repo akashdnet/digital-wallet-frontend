@@ -12,7 +12,7 @@ function TransactionList() {
   
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <div className=" shadow rounded-lg p-6">
       <div className='flex justify-between  items-baseline mb-4'>
         <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
         <Button variant="outline" className="text-sm">
@@ -24,14 +24,14 @@ function TransactionList() {
       <ul className="divide-y divide-gray-200">
         {transactions.map((t:any, _:string) => (
           <li key={_} className="py-3 flex justify-between">
-            <span>{new Date(t.createdAt).toLocaleDateString()}</span>
+            <span>{new Date(t?.createdAt).toLocaleDateString()}</span>
             <span
               className={`font-medium ${
-                (user?._id === t.senderId ? "text-red-500" : "text-green-500")
+                (user?._id === t?.senderId ? "text-red-500" : "text-green-500")
               }`}
             >
-              {user?._id === t.senderId ? "-" : ""}
-              {`৳${t.charge.amountWithCharge}`}
+              {user?._id === t?.senderId ? "-" : ""}
+              {`৳${t?.charge?.amountWithCharge}`}
             </span>
           </li>
         ))}

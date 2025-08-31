@@ -22,6 +22,7 @@ import { useState } from "react";
 import { useSendMoneyMutation } from "@/redux/features/wallet/wallet.api";
 import { useMyProfileQuery } from "@/redux/features/user/user.api";
 import { useNavigate } from "react-router";
+import NotFound from "@/pages/notFound.page";
 
 export function SendMoneyForm({
   className,
@@ -31,6 +32,13 @@ export function SendMoneyForm({
   const [sendMoneyError, setSendMoneyError] = useState<string>("");
   const [sendMoneyPost, { isLoading , error }] = useSendMoneyMutation()
   const navigate = useNavigate();
+
+
+  const hasAccess = userData?.data?.userInfo?.role.includes("agent");
+    if (hasAccess) {
+      return <NotFound />;
+    }
+
 
 
   if(userData?.data?.userInfo?.wallet?.status != "active" ) {

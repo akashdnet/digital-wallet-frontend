@@ -13,11 +13,10 @@ export default function TransactionData() {
 
   React.useEffect(() => {
     if (data?.data?.transactions) {
-      setTableData(data.data.transactions);
+      setTableData(data?.data?.transactions);
     }
   }, [data]);
 
-  // sorting change হলে data অ্যারে sort করো
   React.useEffect(() => {
     if (sorting.length > 0) {
       const { id, desc } = sorting[0];
@@ -44,9 +43,9 @@ export default function TransactionData() {
       header: "Date / ID",
       cell: ({ row }) => (
         <div className="flex flex-col">
-          <span>{new Date(row.original.createdAt).toLocaleDateString()}</span>
-          <span className="text-gray-400 text-xs">
-            {row.original.transactionId}
+          <span>{new Date(row.original?.createdAt).toLocaleDateString()}</span>
+          <span className="text-gray-400 text-xs break-words whitespace-normal">
+            {row.original?.transactionId}
           </span>
         </div>
       ),
@@ -54,12 +53,20 @@ export default function TransactionData() {
     {
       accessorKey: "sentBy",
       header: "To",
+       cell: ({ row }) => (
+        <div className="flex flex-col">
+          <span>{row.original?.sentBy}</span>
+          <span className="text-gray-400 text-xs">
+            {row.original?.type}
+          </span>
+        </div>
+      ),
     },
     {
       accessorKey: "charge.amountWithCharge",
       header: "Amount",
       cell: ({ row }) => {
-        const isSender = user?._id === row.original.senderId;
+        const isSender = user?._id === row.original?.senderId;
         return (
           <span
             className={`font-medium ${
@@ -67,7 +74,7 @@ export default function TransactionData() {
             }`}
           >
             {isSender ? "-" : ""}
-            ৳{row.original.charge.amountWithCharge}
+            ৳{row.original?.charge?.amountWithCharge}
           </span>
         );
       },

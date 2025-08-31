@@ -57,19 +57,24 @@ export default function UpdateProfileForm({
   const [formPost, { isLoading, isError, isSuccess, data, error }] = useUpdateMyProfileMutation();
   
   const {data:userData} = useMyProfileQuery(undefined)  
-  const [dbImageUrl, setDbImageUrl] = useState(userData.data.avatar);
+  const [dbImageUrl, setDbImageUrl] = useState(userData?.data?.userInfo?.avatar);
 
   // @ts-ignore
   const errorMessage = error?.data?.message;
 
 
 
+
+console.log(`update profile form`)
+
+
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: userData?.data?.name,
-      email: userData?.data?.email,
-      phone: userData?.data?.phone,
+      name: userData?.data?.userInfo?.name,
+      email: userData?.data?.userInfo?.email,
+      phone: userData?.data?.userInfo?.phone,
     },
   });
 

@@ -1,16 +1,13 @@
-import { ReactNode } from "react";
 import Footer from "./Footer";
 import Navbar from "./NavBar";
 
-interface TProps {
-  children: ReactNode;
-}
-
-export default function CommonLayout({ children }: TProps) {
+export default function CommonLayout({ children }: any) {
   return (
-    <div className=" min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col w-full">
       <Navbar />
-      <div className="flex-1 flex  ">{children}</div>
+      <div className="flex flex-1">
+        {children} 
+      </div>
       <Footer />
     </div>
   );

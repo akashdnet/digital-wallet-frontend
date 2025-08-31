@@ -7,6 +7,7 @@ import TransactionList from "./TransactionList";
 function Preview({ onEditMode }: { onEditMode: () => void }) {
   const { data, isLoading, error } = useMyProfileQuery(undefined);
   const user: TUser = data?.data.userInfo;
+  
 
 
   // console.log(user)
@@ -16,7 +17,7 @@ function Preview({ onEditMode }: { onEditMode: () => void }) {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-40">
-        <p className="text-gray-500">Loading profile...</p>
+        <p className="text-gray-500 dark:text-white">Loading profile...</p>
       </div>
     );
   }
@@ -33,7 +34,7 @@ function Preview({ onEditMode }: { onEditMode: () => void }) {
     <div className="w-auto  grid grid-cols-1 sm:grid-cols-2 gap-6">
       {/* left */}
       <div className="max-w-md">
-        <div className="bg-white shadow rounded-lg p-6 space-y-8">
+        <div className=" shadow rounded-lg p-6 space-y-8">
 
       <div className="flex items-center gap-6">
         <img
@@ -43,9 +44,9 @@ function Preview({ onEditMode }: { onEditMode: () => void }) {
         />
         <div className="space-y-1">
           <h2 className="text-2xl font-semibold">{user?.name}</h2>
-          <p className="text-sm text-gray-500">{user?.email}</p>
+          <p className="text-sm text-gray-500 dark:text-white">{user?.email}</p>
           <div>
-            <span className="text-sm text-gray-500">Phone: </span>
+            <span className="text-sm text-gray-500 dark:text-white">Phone: </span>
             {user?.phone ? (
               <span className="font-medium">{user.phone}</span>
             ) : (
@@ -56,7 +57,7 @@ function Preview({ onEditMode }: { onEditMode: () => void }) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <Button onClick={onEditMode} className="w-full cursor-pointer">
+        <Button onClick={onEditMode} className="w-full cursor-pointer dark:bg-white">
           Update Profile
         </Button>
       </div>

@@ -9,11 +9,11 @@ export default function InfoItem({
 }) {
   return (
     <div>
-      <label className="text-sm text-gray-500">{label}</label>
+      <label className="text-sm text-gray-500 dark:text-white">{label}</label>
       <p
         className={`font-medium ${
           capitalize ? "capitalize" : ""
-        } text-gray-800`}
+        } text-gray-800  dark:text-white/65`}
       >
         {value || "—"}
       </p>

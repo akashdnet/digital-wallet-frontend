@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 import { AuthApi, useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hook";
@@ -33,7 +33,7 @@ export function LoginForm({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   
-  const [postLogin] = useLoginMutation();
+  const [postLogin, {isLoading}] = useLoginMutation();
 
   const form = useForm({
     defaultValues: {
@@ -43,16 +43,15 @@ export function LoginForm({
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const id = toast.loading('Logging in...');
 
     try {
-      const res = await postLogin(data).unwrap();
-      toast.success("Logged in successfully.");
+      await postLogin(data).unwrap();
       dispatch(AuthApi.util.resetApiState());
-      // console.log(res);
+      toast.success('Logged in successfully.', { id });
       navigate("/");
     } catch (error:any) {
-      toast.error("Unidentified credential.");
-      setLoginError(error.data.message);
+      toast.error(error.data.message || 'Login failed.', { id });
       // console.log(error)
     }
   };
@@ -146,7 +145,7 @@ export function LoginForm({
                 )}
               />
 
-              <Button type="submit" className="w-full cursor-pointer">
+              <Button type="submit" className="w-full cursor-pointer" disabled={isLoading}>
                 Login
               </Button>
             </form>

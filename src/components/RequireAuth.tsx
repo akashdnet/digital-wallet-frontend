@@ -6,7 +6,7 @@ type Role = "user" | "agent" | "admin";
 
 export function RequireAuth<T extends object>(
   Component: React.ComponentType<T>,
-  allowedRoles: Role[] = ["user"] // ✅ default fallback
+  allowedRoles: Role[] = ["user"] 
 ) {
   return (props: T) => {
     const { data, isLoading } = useMyProfileQuery(undefined);

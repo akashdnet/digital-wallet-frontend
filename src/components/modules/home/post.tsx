@@ -35,7 +35,7 @@ export default function Post({ data, isError, isLoading }: TProps) {
         {data?.map(post => (
           <Card
             key={post.id}
-            className="transition-shadow hover:shadow-lg border border-gray-200 rounded-lg overflow-hidden bg-white m-5"
+            className="transition-shadow hover:shadow-lg border border-gray-200 rounded-lg overflow-hidden  m-5"
           >
             <CardHeader className="bg-gray-50 px-6 py-4">
               <CardTitle className="text-lg font-semibold text-gray-900">{post.title.split(' ').slice(0, 5).join(' ') + '...'}</CardTitle>

@@ -43,8 +43,8 @@ export default function TransactionTable({
   });
 
   return (
-    <div className="bg-white shadow rounded-lg p-6 w-full max-w-3xl m-auto">
-      <h2 className="text-lg font-semibold mb-4">Transaction History</h2>
+    <div className=" shadow rounded-lg md:p-6 w-full max-w-3xl m-auto">
+      <h2 className="text-2xl font-bold mb-4 text-center">Transaction History</h2>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

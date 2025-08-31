@@ -73,10 +73,17 @@ export default function RegistrationForm({
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
     try {
       const formData = new FormData();
-      formData.append("data", JSON.stringify(data));
+      const { confirmPassword, ...registerData } = data; // Destructure to exclude confirmPassword
+      formData.append("data", JSON.stringify(registerData));
+
       formData.append("file", imageFile as File);
-      const res = await register(formData).unwrap();
-      console.log(res);
+      const res = await toast.promise(register(formData).unwrap(), {
+        loading: 'Registering...',
+        success: 'Registration successful!',
+        error: (error) => {
+          return error.data.message || 'Registration failed.';
+        },
+      });
 
       toast.success("User created successfully");
       navigate("/login");
