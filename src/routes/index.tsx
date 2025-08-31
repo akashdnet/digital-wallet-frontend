@@ -81,11 +81,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "all-agents",
-        Component: RequireAuth(ManageUsers, ["admin"]),
+        Component: RequireAuth(ManageAgents, ["admin"]),
       },
       {
         path: "all-users",
-        Component: RequireAuth(ManageAgents, ["admin"]),
+        Component: RequireAuth(ManageUsers, ["admin"]),
       },
       {
         path: "services",
