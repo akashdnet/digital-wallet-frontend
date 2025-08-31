@@ -68,8 +68,8 @@ export default function ManageAgents() {
     }
   };
 
-  if (isLoading) return <div className="p-6">Loading...</div>;
-  if (error) return <div className="p-6 text-red-500">Error loading users</div>;
+  if (isLoading) return <div className="p-6 text-center">Loading...</div>;
+  if (error) return <div className="p-6 text-red-500 text-center">Error loading Agents</div>;
 
   return (
     <div className="p-6 shadow-xl rounded-lg">

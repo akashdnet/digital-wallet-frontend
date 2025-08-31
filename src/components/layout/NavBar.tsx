@@ -36,22 +36,22 @@ const navData = {
     },
     {
       title: "Dashboard Overview",
-      url: "dashboard-overview",
+      url: "/dashboard-overview",
       icon: IconListDetails,
     },
     {
       title: "All Transactions",
-      url: "all-transactions",
+      url: "/all-transactions",
       icon: IconListDetails,
     },
     {
       title: "All Users",
-      url: "all-users",
+      url: "/all-users",
       icon: IconListDetails,
     },
     {
       title: "All Agents",
-      url: "all-agents",
+      url: "/all-agents",
       icon: IconListDetails,
     },
    
