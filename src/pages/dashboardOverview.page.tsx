@@ -7,7 +7,7 @@ import React from "react";
 
 export default function DashboardOverviewPage() {
   return (
-    <div className="w-full mb-16">
+    <div className="w-full mb-16 md:px-8">
       <div className="mx-auto flex flex-col gap-8">
         <DashboardOverview />
 

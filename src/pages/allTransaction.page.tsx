@@ -4,18 +4,21 @@ import React from "react";
 import { ColumnDef, SortingState } from "@tanstack/react-table";
 import { useMyProfileQuery } from "@/redux/features/user/user.api";
 import TransactionTable from "@/components/modules/Transaction/TransactionTable";
+import { useDashboardOverviewQuery } from "@/redux/features/admin/admin.api";
 
 export default function AllTransactionPage() {
-  const { data } = useMyProfileQuery(undefined);
+  const { data } = useDashboardOverviewQuery(undefined);
   const transactionList = data?.data?.transactionList;
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [tableData, setTableData] = React.useState<any[]>([]);
+
+  console.log(data)
 
   React.useEffect(() => {
     if (transactionList) {
       setTableData(transactionList);
     }
-  }, [transactionList]);
+  }, [data]);
 
   React.useEffect(() => {
     if (sorting.length > 0) {

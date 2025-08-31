@@ -178,7 +178,7 @@ export default function GlassNavbar() {
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem className='contact-guide'>
-                <NavigationMenuLink className="px-3 py-2  hover:text-blue-400 transition">
+                <NavigationMenuLink asChild className="px-3 py-2  hover:text-blue-400 transition">
                   <Link to="/contact">Contact</Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -189,7 +189,6 @@ export default function GlassNavbar() {
             <ModeToggle />
           </div>
 
-          {/* CTA Button */}
           {email ? (
             <>
               <Button
@@ -216,6 +215,13 @@ export default function GlassNavbar() {
             </div>
           )}
         </div>
+
+
+
+
+
+
+
 
         {/* Mobile Menu */}
         <div className="md:hidden">

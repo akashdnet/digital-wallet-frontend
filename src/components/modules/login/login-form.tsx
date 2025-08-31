@@ -24,15 +24,23 @@ import { toast, Toaster } from "sonner";
 import { AuthApi, useLoginMutation } from "@/redux/features/auth/auth.api";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hook";
+import { useMyProfileQuery } from "@/redux/features/user/user.api";
 
 export function LoginForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const [loginError, setLoginError] = useState<string>("");
+  const {data} = useMyProfileQuery(undefined)
+  const email = data?.data?.userInfo?.email
   const navigate = useNavigate();
+
+  if(email){
+    navigate("/")
+  } 
+
   const dispatch = useAppDispatch();
   
+  const [loginError, setLoginError] = useState<string>("");
   const [postLogin, {isLoading}] = useLoginMutation();
 
   const form = useForm({
@@ -67,20 +75,6 @@ export function LoginForm({
       <Card className="max-w-md w-full mx-auto ">
         <CardHeader className="text-center space-y-4">
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-
-          <CardDescription className="space-y-2">
-            <Button
-              type="button"
-              variant="default"
-              className="w-full flex justify-center items-center gap-2 cursor-pointer"
-            >
-              <FaGoogle /> Login with Google
-            </Button>
-            <hr />
-            <h1 className="text-muted-foreground">
-              ----- or continue with credentials -----
-            </h1>
-          </CardDescription>
         </CardHeader>
 
         <CardContent className="space-t-6 w-full">

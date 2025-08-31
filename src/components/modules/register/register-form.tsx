@@ -16,7 +16,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import Password from "@/components/ui/Password";
-import { useRegisterMutation } from "@/redux/features/user/user.api";
+import { useMyProfileQuery, useRegisterMutation } from "@/redux/features/user/user.api";
 import SingleImageUpload from "@/components/SingleImageUpload";
 import { useState } from "react";
 
@@ -49,11 +49,18 @@ export default function RegistrationForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
+  const {data: dataUser} = useMyProfileQuery(undefined)
+  const email = dataUser?.data?.userInfo?.email
+  const navigate = useNavigate();
+
+  if(email){
+    navigate("/")
+  } 
+
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const [register, { isLoading, isError, isSuccess, data, error }] =
     useRegisterMutation();
-  const navigate = useNavigate();
 
   // @ts-ignore
   const errorMessage = error?.data?.message;

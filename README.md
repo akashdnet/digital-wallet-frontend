@@ -1,69 +1,81 @@
-# React + TypeScript + Vite
+# 💳 Digital Wallet Frontend (React + Redux Toolkit + RTK Query)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and secure frontend application, built with **React**, **Redux Toolkit**, and **RTK Query**. Inspired by services like **bKash** or **Nagad**, this project provides a seamless user experience for Users, Agents, and Admins.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+### ✅ Public Pages
+- **Home** — Landing page about our digital wallet
+- **About** — ABout our company
+- **Services/Features** — What we offer (send money, top-up, withdraw, etc.)
+- **Contact** — Address and map section
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔐 Authentication
+- JWT-based login/register
+- Role selection during signup (User, Agent or Admin)
+- Protected routes with role-based access
+- Persisted login after refresh
+- Logout with state cleanup
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 👤 User Dashboard
+- Wallet balance & transaction history
+- Send money, Top-Up, Withdraw
+- Transaction history 
+- Profile update
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### 🧑‍💼 Agent Dashboard
+- Cash-in and cash-out operations
+- profile update
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🛠️ Admin Dashboard
+- View/manage all users and agents
+- Block/suspend accounts
+- Admin account management
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧩 Tech Stack
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Category       | Tech Used                            |
+|----------------|--------------------------------------|
+| **Frontend**   | React, TypeScript, Vite              |
+| **State**      | Redux Toolkit, RTK Query             |
+| **Routing**    | React Router DOM                     |
+| **Styling**    | Tailwind CSS                         |
+| **Icons**      | React Icons            |
+| **UI Lib**     | shadcn/ui        |
+| **Notifications** | Sonner (toast notifications)      |
+| **Tour Guide** | React Joyride (guided feature tour)  |
+
+---
+
+
+## 🧪 Run Locally
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/akashdnet/digital-wallet-frontend.git
+cd digital-wallet-frontend
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
+
+
+
+
+src/
+│
+├── components/         # Reusable UI components
+├── components/modules  # All isolated component for each pages, on folder name.         
+├── pages/              # All pages
+├── store/              # Redux slices and APIs (auth, user, transaction)
+├── layouts/            # Dashboard layouts
+├── router/             # Route protection and route config
+├── hooks/              # Custom hooks
+├── assets/             # Images, logos, etc.
+└── utils/              # Helpers, constants
