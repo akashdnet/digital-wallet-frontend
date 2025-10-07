@@ -16,7 +16,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import Password from "@/components/ui/Password";
-import { useMyProfileQuery, useRegisterMutation } from "@/redux/features/user/user.api";
+import {
+  useMyProfileQuery,
+  useRegisterMutation,
+} from "@/redux/features/user/user.api";
 import SingleImageUpload from "@/components/SingleImageUpload";
 import { useState } from "react";
 
@@ -49,13 +52,13 @@ export default function RegistrationForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const {data: dataUser} = useMyProfileQuery(undefined)
-  const email = dataUser?.data?.userInfo?.email
+  const { data: dataUser } = useMyProfileQuery(undefined);
+  const email = dataUser?.data?.userInfo?.email;
   const navigate = useNavigate();
 
-  if(email){
-    navigate("/")
-  } 
+  if (email) {
+    navigate("/");
+  }
 
   const [imageFile, setImageFile] = useState<File | null>(null);
 
@@ -85,10 +88,10 @@ export default function RegistrationForm({
 
       formData.append("file", imageFile as File);
       const res = await toast.promise(register(formData).unwrap(), {
-        loading: 'Registering...',
-        success: 'Registration successful!',
+        loading: "Registering...",
+        success: "Registration successful!",
         error: (error) => {
-          return error.data.message || 'Registration failed.';
+          return error.data.message || "Registration failed.";
         },
       });
 
@@ -251,6 +254,7 @@ export default function RegistrationForm({
         </Form>
 
         
+      </div>
 
       <div className="text-center text-sm">
         Already have an account?{" "}
