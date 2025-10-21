@@ -2,6 +2,7 @@ import App from "@/App";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
+import CashoutPage from "@/components/modules/cash-out/CashoutPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
 import TopUpPage from "@/components/modules/top-up/TopUpPage";
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
@@ -48,7 +49,7 @@ export let router = createBrowserRouter([
       },
      {
         path: "cash-out",
-        element: <Test t="Cash-Out"/>,
+        Component: CashoutPage
      }
       ,
       {
