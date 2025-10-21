@@ -50,6 +50,10 @@ export default function InfoComponent({handleUpdateProfile}:props) {
 
       <div className="p-4 bg-gray-50 rounded-lg space-y-2">
         <div className="flex justify-between items-center">
+          <span className="text-gray-600 font-medium">Type:</span>
+          <span className="uppercase text-gray-600 font-semibold">User</span>
+        </div>
+        <div className="flex justify-between items-center">
           <span className="text-gray-600 font-medium">Status:</span>
           <span className="uppercase text-green-600 font-semibold">Active</span>
         </div>

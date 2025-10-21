@@ -4,6 +4,7 @@ import CommonLayout from "@/components/layouts/CommonLayout";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
 import CashoutPage from "@/components/modules/cash-out/CashoutPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
+import SendMoneyPage from "@/components/modules/send-money/SendMoneyPage";
 import TopUpPage from "@/components/modules/top-up/TopUpPage";
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
 import { createBrowserRouter } from "react-router";
@@ -55,6 +56,10 @@ export let router = createBrowserRouter([
       {
         path: "top-up",
         Component: TopUpPage
+      },
+      {
+        path: "send-money",
+        Component: SendMoneyPage
       },
     ],
   },
