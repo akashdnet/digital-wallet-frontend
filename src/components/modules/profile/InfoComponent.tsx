@@ -8,7 +8,7 @@ interface props {
 
 export default function InfoComponent({handleUpdateProfile}:props) {
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-xl space-y-8">
+    <div className="max-w-md mx-auto md:p-6 p-3 bg-white shadow-lg rounded-xl space-y-8">
       <h1 className="text-lg font-semibold"> Your profile information </h1>
 
 

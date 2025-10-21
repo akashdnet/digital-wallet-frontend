@@ -1,5 +1,3 @@
-import { Home } from "lucide-react"
-import { RiDashboardHorizontalLine } from "react-icons/ri";
 import { TbPhonePlus } from "react-icons/tb";
 import { BsCashCoin } from "react-icons/bs";
 import { GiCash } from "react-icons/gi";
