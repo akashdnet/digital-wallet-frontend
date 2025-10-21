@@ -1,7 +1,9 @@
 import App from "@/App";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
+import CashinPage from "@/components/modules/cash-in/CashinPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
+import TopUpPage from "@/components/modules/top-up/TopUpPage";
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
 import { createBrowserRouter } from "react-router";
 
@@ -42,7 +44,7 @@ export let router = createBrowserRouter([
       },
       {
         path: "cash-in",
-        element: <Test t="Cash-In"/>,
+        Component: CashinPage
       },
      {
         path: "cash-out",
@@ -51,7 +53,7 @@ export let router = createBrowserRouter([
       ,
       {
         path: "top-up",
-        element: <Test t="Top-Up"/>,
+        Component: TopUpPage
       },
     ],
   },
