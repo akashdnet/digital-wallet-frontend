@@ -100,6 +100,16 @@ const admin_nav = [
     url: "/dashboard/user-management",
     icon: FaUsers,
   },
+  {
+    title: "Pending Agent",
+    url: "/dashboard/pending-agent",
+    icon: FaUserClock,
+  },
+  {
+    title: "Agent Management",
+    url: "/dashboard/agent-management",
+    icon: FaUsers,
+  },
 ];
 
 export function AppSidebar() {

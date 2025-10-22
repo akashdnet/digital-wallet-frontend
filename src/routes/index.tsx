@@ -1,9 +1,11 @@
 import App from "@/App";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
+import AgentManagementPage from "@/components/modules/agent-management/AgentManagementPage";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
 import CashoutPage from "@/components/modules/cash-out/CashoutPage";
 import OverviewPage from "@/components/modules/overview/OverviewPage";
+import PendingAgentPage from "@/components/modules/pending-agent/PendingAgentPage";
 import PendingUserPage from "@/components/modules/pending-user/PendingUserPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
 import SendMoneyPage from "@/components/modules/send-money/SendMoneyPage";
@@ -68,13 +70,22 @@ export let router = createBrowserRouter([
         path: "overview",
         Component: OverviewPage
       },
+      
+      {
+        path: "pending-user",
+        Component: PendingUserPage
+      },
       {
         path: "user-management",
         Component: UserManagementPage
       },
       {
-        path: "pending-user",
-        Component: PendingUserPage
+        path: "pending-agent",
+        Component: PendingAgentPage
+      },
+      {
+        path: "agent-management",
+        Component: AgentManagementPage
       },
     ],
   },
