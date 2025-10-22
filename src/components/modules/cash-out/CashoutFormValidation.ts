@@ -9,7 +9,10 @@ export const formSchema = z.object({
   }),
    amount: z
     .string()
-    .regex(/^\d+(\.\d{1,2})?$/, "Amount must be a valid number")
+    .regex(/^\d+(\.\d{1,2})?$/, "Amount must be a valid positive number.")
+    .refine((val) => parseFloat(val) > 0, {
+      message: "Amount must be greater than 0",
+    }),
 })
 
 

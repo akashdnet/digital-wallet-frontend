@@ -3,6 +3,8 @@ import { BsCashCoin } from "react-icons/bs";
 import { GiCash } from "react-icons/gi";
 import { GrAnalytics } from "react-icons/gr";
 import { BiTransferAlt } from "react-icons/bi";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { FaUsers, FaUserClock } from "react-icons/fa";
 
 import {
   Sidebar,
@@ -47,11 +49,6 @@ const user_nav = [
   },
 ];
 
-
-
-
-
-
 const agent_nav = [
   {
     title: "Profile",
@@ -73,13 +70,37 @@ const agent_nav = [
     url: "/dashboard/cash-in",
     icon: GiCash,
   },
-
 ];
 
+const admin_nav = [
+  {
+    title: "Profile",
+    url: "/dashboard/profile",
+    icon: GrAnalytics,
+  },
 
-
-
-
+  {
+    title: "Overview",
+    url: "/dashboard/overview",
+    icon: LuLayoutDashboard,
+  },
+  {
+    title: "Transitions",
+    url: "/dashboard/transitions",
+    icon: BiTransferAlt,
+  },
+  
+  {
+    title: "Pending User",
+    url: "/dashboard/pending-user",
+    icon: FaUserClock,
+  },
+  {
+    title: "User Management",
+    url: "/dashboard/user-management",
+    icon: FaUsers,
+  },
+];
 
 export function AppSidebar() {
   return (
@@ -92,6 +113,25 @@ export function AppSidebar() {
         </Button>
       </SidebarHeader>
       <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-lg">
+            Admin Dashboard
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="ml-4">
+            <SidebarMenu>
+              {admin_nav.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg">
             Agent Dashboard

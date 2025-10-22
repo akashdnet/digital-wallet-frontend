@@ -3,10 +3,13 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
 import CashoutPage from "@/components/modules/cash-out/CashoutPage";
+import OverviewPage from "@/components/modules/overview/OverviewPage";
+import PendingUserPage from "@/components/modules/pending-user/PendingUserPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
 import SendMoneyPage from "@/components/modules/send-money/SendMoneyPage";
 import TopUpPage from "@/components/modules/top-up/TopUpPage";
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
+import UserManagementPage from "@/components/modules/user-management/UserManagementPage";
 import { createBrowserRouter } from "react-router";
 
 export let router = createBrowserRouter([
@@ -60,6 +63,18 @@ export let router = createBrowserRouter([
       {
         path: "send-money",
         Component: SendMoneyPage
+      },
+      {
+        path: "overview",
+        Component: OverviewPage
+      },
+      {
+        path: "user-management",
+        Component: UserManagementPage
+      },
+      {
+        path: "pending-user",
+        Component: PendingUserPage
       },
     ],
   },
