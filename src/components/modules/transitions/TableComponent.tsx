@@ -2,28 +2,43 @@ import { Button } from "@/components/ui/button"
 
 import { useSearchParams } from "react-router-dom"
 
-import { invoices } from "@/utils/constant"
+
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
+import { useMyTransactionsQuery } from "@/redux/features/profile/profile.api"
 
 export default function TableComponent() {
+
+    
+  
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   const page = parseInt(searchParams.get("page") || "1", 10)
-  const limit = parseInt(searchParams.get("limit") || "3", 10)
+  const limit = parseInt(searchParams.get("limit") || "5", 10)
   const term = searchParams.get("term")?.toLowerCase() || ""
 
+
+  const { data, isLoading, isError, error } = useMyTransactionsQuery({ page, limit, term })
+
+
+      const transactions = data?.data
+      const meta = data?.meta
+
+      console.log(data)
+
+
   
-  const filteredInvoices = invoices.filter(
-    (inv) =>
+  const filteredInvoices = transactions?.filter(
+    (inv:any) =>
       inv.invoice.toLowerCase().includes(term) ||
       inv.method.toLowerCase().includes(term) ||
       inv.to.toLowerCase().includes(term)
   )
 
-  const totalPages = Math.ceil(filteredInvoices.length / limit)
+  const totalPages = Math.ceil(filteredInvoices?.length / limit)
   const startIndex = (page - 1) * limit
-  const currentRows = filteredInvoices.slice(startIndex, startIndex + limit)
+  const currentRows = filteredInvoices?.slice(startIndex, startIndex + limit)
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), limit: String(limit), term })
@@ -60,8 +75,8 @@ export default function TableComponent() {
               setSearchParams({ page: "1", limit: e.target.value, term })
             }
           >
-            <option value="3">3</option>
             <option value="5">5</option>
+            <option value="5">7</option>
             <option value="10">10</option>
           </select>
         </div>

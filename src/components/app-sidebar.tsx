@@ -21,6 +21,7 @@ import {
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
 
 // user_nav.
 const user_nav = [
@@ -120,8 +121,15 @@ interface AppSidebarProps {
 }
 
 export function AppSidebar({ role="admin" }: AppSidebarProps) {
-   const baseClass =
-    "mt-1 inline-block w-fit rounded-full px-2 py-0.5 text-[10px] font-medium";
+
+  const { data } = useUserInfoQuery(undefined)
+  const userInfo = data?.data?.userInfo
+
+
+
+
+
+   const baseClass = "mt-1 inline-block w-fit rounded-full px-2 py-0.5 text-[10px] font-medium";
 
   const roleClass =
     role === "admin"
@@ -129,7 +137,7 @@ export function AppSidebar({ role="admin" }: AppSidebarProps) {
       : role === "agent"
       ? "bg-green-100 text-green-700"
       : "bg-blue-100 text-blue-700";
-  const navItems = role === "admin" ? admin_nav : role === "agent" ? agent_nav : user_nav;
+  // const navItems = role === "admin" ? admin_nav : role === "agent" ? agent_nav : user_nav;
 
   return (
     <Sidebar>
@@ -141,15 +149,15 @@ export function AppSidebar({ role="admin" }: AppSidebarProps) {
         </Button>
         <section className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
           <Avatar className="h-12 w-12">
-            <AvatarImage src="https://github.com/shadcn.png" alt="User avatar" />
+            <AvatarImage src={userInfo?.avatar} alt="User avatar" />
             <AvatarFallback>TS</AvatarFallback>
           </Avatar>
 
           <div className="flex flex-col">
-  <h1 className="text-sm font-semibold text-gray-900">Tony Stark</h1>
-  <h2 className="text-xs text-gray-500">username@gmail.com</h2>
+  <h1 className="text-sm font-semibold text-gray-900">{userInfo?.name}</h1>
+  <h2 className="text-xs text-gray-500">{userInfo?.email}</h2>
   <span className={`${baseClass} ${roleClass}`}>
-      Role: <span className="uppercase mx-1">{role}</span>
+      Role: <span className="uppercase mx-1">{userInfo?.role}</span>
     </span>
 </div>
 

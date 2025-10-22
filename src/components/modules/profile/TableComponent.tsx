@@ -11,13 +11,13 @@ import {
 import { Link } from "react-router-dom"
 import clsx from "clsx"
 import { TbCurrencyTaka } from "react-icons/tb";
-import { invoices } from "@/utils/constant";
+// import { invoices } from "@/utils/constant";
 
 
 
 
 
-export default function TableComponent() {
+export default function TableComponent({transactions}:{transactions:any}) {
   return (
     <div className="w-full max-w-4xl mx-auto md:p-6 p-3 bg-white shadow-lg rounded-xl">
       <h1 className="text-lg font-semibold">Recent Transition History</h1>
@@ -38,7 +38,8 @@ export default function TableComponent() {
         </TableHeader>
 
         <TableBody>
-          {invoices.map((invoice, idx) => (
+           {transactions?.length == 0 && <TableCell className="font-medium text-center py-5 text-gray-500 " colSpan={4}>No transaction found</TableCell>}
+          {transactions?.map((invoice:any, idx:any) => (
             <TableRow 
               key={invoice.invoice} 
               className={clsx("hover:bg-gray-50 transition-colors", idx % 2 === 0 && "bg-gray-50/40")}
@@ -51,6 +52,8 @@ export default function TableComponent() {
           ))}
         </TableBody>
       </Table>
+      
+         
     </div>
   )
 }

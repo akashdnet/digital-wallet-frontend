@@ -1,11 +1,12 @@
+
 import TableComponent from "./TableComponent";
 
 
 
-export type TUpdateProfile = "none" | "update" | "pass"
 
 
 export default function TransitionPage() {
+
 
   return (
     <section className="space-y-8 max-w-6xl mx-auto md:p-6 p-3">
@@ -17,7 +18,7 @@ export default function TransitionPage() {
 
 
     
-          <TableComponent/>
+          <TableComponent />
       
       
     </section>

@@ -6,7 +6,9 @@ import {
 } from "@/components/ui/form"
 import TextFomField from "@/components/TextFomField"
 import { formSchema, useValidationForm } from "./LoginFormValidation"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useLoginMutation } from "@/redux/features/auth/auth.api"
+import { toast } from "sonner"
 
 
 
@@ -19,11 +21,25 @@ interface props {
 
 
 export function FormComponent({}:props) {
-    const form = useValidationForm()
- 
+    const form = useValidationForm();
+     const [login] = useLoginMutation();
+     const navigate = useNavigate();
   
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    const loadingID = toast.loading("Loading...");
+    try {
+      const res = await login(data).unwrap();
+      if(res.success){
+        toast.success(res.message, {id: loadingID})
+        navigate("/dashboard/profile")
+      }else{
+        toast.error(res.message, {id: loadingID})
+      }
+      console.log(res);
+    } catch (error:any) {
+      toast.error(error.data.message, {id: loadingID})
+      console.log(error)
+    }
   }
 
 

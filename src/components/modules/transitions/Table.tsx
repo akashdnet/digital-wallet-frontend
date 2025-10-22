@@ -28,7 +28,7 @@ export default function TableData({data}:props) {
         </TableHeader>
 
         <TableBody>
-          {data.map((invoice, idx) => (
+          {data?.map((invoice, idx) => (
             <TableRow
               key={invoice.invoice}
               className={clsx(
@@ -42,9 +42,9 @@ export default function TableData({data}:props) {
 
               <TableCell className="font-medium text-center">
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold text-gray-800">{invoice.method}</span>
+                  <span className="font-semibold text-gray-800">{invoice?.method}</span>
                   <span className="text-xs text-gray-500">
-                    <span className="uppercase">Invoice</span>: {invoice.invoice}
+                    <span className="uppercase">Invoice</span>: {invoice?.invoice}
                   </span>
                 </div>
               </TableCell>
@@ -74,7 +74,7 @@ export default function TableData({data}:props) {
             </TableRow>
           ))}
 
-          {data.length === 0 && (
+          {data?.length === 0 && (
             <TableRow>
               <TableCell colSpan={4} className="text-center py-6 text-gray-500">
                 No results found
