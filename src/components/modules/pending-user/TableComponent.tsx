@@ -2,11 +2,13 @@ import { Button } from "@/components/ui/button"
 
 import { useSearchParams } from "react-router-dom"
 
-import { invoices } from "@/utils/constant"
+import { invoices as rowInvoices } from "@/utils/constant"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 
 export default function TableComponent() {
+  const filterInvoices = rowInvoices.filter((d, _) => d.status == "pending")
+
   const [searchParams, setSearchParams] = useSearchParams()
 
   const page = parseInt(searchParams.get("page") || "1", 10)
@@ -14,7 +16,7 @@ export default function TableComponent() {
   const term = searchParams.get("term")?.toLowerCase() || ""
 
   
-  const filteredInvoices = invoices.filter(
+  const filteredInvoices = filterInvoices.filter(
     (inv) =>
       inv.invoice.toLowerCase().includes(term) ||
       inv.method.toLowerCase().includes(term) ||
@@ -47,6 +49,13 @@ export default function TableComponent() {
       <TableData data={currentRows} />
 
       
+
+
+
+
+
+
+      {/* footer  */}
       <div className="flex gap-4 border-t pt-4 justify-between items-center md:flex-row flex-col">
         <div className="flex items-center gap-2">
           <label htmlFor="limit" className="text-sm text-gray-600">
@@ -67,6 +76,8 @@ export default function TableComponent() {
         </div>
 
        
+
+
 
         <div className="flex items-center gap-2 justify-end ">
           <Button

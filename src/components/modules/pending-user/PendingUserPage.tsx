@@ -2,7 +2,6 @@ import TableComponent from "./TableComponent";
 
 
 
-export type TUpdateProfile = "none" | "update" | "pass"
 
 
 export default function PendingUserPage() {

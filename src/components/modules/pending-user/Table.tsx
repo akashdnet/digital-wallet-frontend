@@ -8,80 +8,91 @@ import {
 } from "@/components/ui/table";
 import type { TInvoice } from "@/utils/constant";
 import clsx from "clsx";
-import { TbCurrencyTaka } from "react-icons/tb";
+import { useState } from "react";
 
-interface props{
-    data: TInvoice[]
+interface Props {
+  data: TInvoice[];
 }
 
+export default function TableData({ data }: Props) {
+  const [rows, setRows] = useState<TInvoice[]>(data);
 
-export default function TableData({data}:props) {
+  const handleApprove = (invoiceId: string) => {
+    setRows((prev) =>
+      prev.map((item) =>
+        item.invoice === invoiceId ? { ...item, status: "active" } : item
+      )
+    );
+  };
+
   return (
     <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="text-left">Date</TableHead>
-            <TableHead className="text-center">Details</TableHead>
-            <TableHead className="text-center hidden md:block">To</TableHead>
-            <TableHead className="text-right">Amount Summary</TableHead>
-          </TableRow>
-        </TableHeader>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="text-left">Status</TableHead>
+          <TableHead className="text-center">Name</TableHead>
+          <TableHead className="text-center hidden md:block">Email</TableHead>
+          <TableHead className="text-right">Action</TableHead>
+        </TableRow>
+      </TableHeader>
 
-        <TableBody>
-          {data.map((invoice, idx) => (
-            <TableRow
-              key={invoice.invoice}
-              className={clsx(
-                "transition-colors",
-                idx % 2 === 0 ? "bg-gray-50/60" : "bg-white"
+      <TableBody>
+        {rows.map((invoice, idx) => (
+          <TableRow
+            key={invoice.invoice}
+            className={clsx(
+              "transition-colors",
+              idx % 2 === 0 ? "bg-gray-50/60" : "bg-white"
+            )}
+          >
+            <TableCell className="text-left">
+              <span
+                className={clsx(
+                  "px-2 py-0.5 rounded-full text-xs font-semibold",
+                  invoice.status === "active" &&
+                    "bg-green-100 text-green-700",
+                  invoice.status === "pending" &&
+                    "bg-yellow-100 text-yellow-700",
+                  invoice.status === "block" &&
+                    "bg-red-100 text-red-700"
+                )}
+              >
+                <span className="uppercase">{invoice.status}</span>
+              </span>
+            </TableCell>
+
+            <TableCell className="font-medium text-center">
+              {invoice.name}
+            </TableCell>
+
+            <TableCell className="text-center hidden md:block">
+              {invoice.email}
+            </TableCell>
+
+            <TableCell className="text-right">
+              {invoice.status !== "active" && (
+                <button
+                  onClick={() => handleApprove(invoice.invoice)}
+                  className="px-3 py-1 rounded-md bg-blue-500 text-white text-sm hover:bg-blue-600"
+                >
+                  Approve
+                </button>
               )}
+            </TableCell>
+          </TableRow>
+        ))}
+
+        {rows.length === 0 && (
+          <TableRow>
+            <TableCell
+              colSpan={4}
+              className="text-center py-6 text-gray-500"
             >
-              <TableCell className="text-left">
-                <span>{invoice.date}</span>
-              </TableCell>
-
-              <TableCell className="font-medium text-center">
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold text-gray-800">{invoice.method}</span>
-                  <span className="text-xs text-gray-500">
-                    <span className="uppercase">Invoice</span>: {invoice.invoice}
-                  </span>
-                </div>
-              </TableCell>
-
-              <TableCell className="text-center hidden md:block">{invoice.to}</TableCell>
-
-              <TableCell className="text-right">
-                <div className="flex flex-col gap-1 items-end">
-                  <span className="flex items-center font-semibold text-gray-800 md:hidden">
-                    TO: {invoice.to}
-                  </span>
-                  <span className="flex items-center font-semibold text-gray-800">
-                    <TbCurrencyTaka className="mr-1" /> {invoice.totalAmount}
-                  </span>
-                  <span
-                    className={clsx(
-                      "px-2 py-0.5 rounded-full text-xs font-semibold",
-                      invoice.paymentStatus === "Paid" && "bg-green-100 text-green-700",
-                      invoice.paymentStatus === "Pending" && "bg-yellow-100 text-yellow-700",
-                      invoice.paymentStatus === "Unpaid" && "bg-red-100 text-red-700"
-                    )}
-                  >
-                    {invoice.paymentStatus}
-                  </span>
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-
-          {data.length === 0 && (
-            <TableRow>
-              <TableCell colSpan={4} className="text-center py-6 text-gray-500">
-                No results found
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-  )
+              No pending request found
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
+  );
 }
