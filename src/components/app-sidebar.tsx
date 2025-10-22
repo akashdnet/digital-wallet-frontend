@@ -9,6 +9,7 @@ import { FaUsers, FaUserClock } from "react-icons/fa";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 // user_nav.
 const user_nav = [
@@ -39,7 +41,7 @@ const user_nav = [
   },
   {
     title: "Send Money",
-    url: "/dashboard/send-moneyp-d",
+    url: "/dashboard/send-money",
     icon: GiCash,
   },
   {
@@ -89,7 +91,7 @@ const admin_nav = [
     url: "/dashboard/transitions",
     icon: BiTransferAlt,
   },
-  
+
   {
     title: "Pending User",
     url: "/dashboard/pending-user",
@@ -112,19 +114,53 @@ const admin_nav = [
   },
 ];
 
-export function AppSidebar() {
+
+interface AppSidebarProps {
+  role: "admin" | "agent" | "user";
+}
+
+export function AppSidebar({ role="admin" }: AppSidebarProps) {
+   const baseClass =
+    "mt-1 inline-block w-fit rounded-full px-2 py-0.5 text-[10px] font-medium";
+
+  const roleClass =
+    role === "admin"
+      ? "bg-red-100 text-red-700"
+      : role === "agent"
+      ? "bg-green-100 text-green-700"
+      : "bg-blue-100 text-blue-700";
+  const navItems = role === "admin" ? admin_nav : role === "agent" ? agent_nav : user_nav;
+
   return (
     <Sidebar>
       <SidebarHeader>
-        <Button className="cursor-pointer">
+        <Button className="cursor-pointer mt-2">
           <Link className="w-full" to="/">
             Go to home
           </Link>
         </Button>
+        <section className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm">
+          <Avatar className="h-12 w-12">
+            <AvatarImage src="https://github.com/shadcn.png" alt="User avatar" />
+            <AvatarFallback>TS</AvatarFallback>
+          </Avatar>
+
+          <div className="flex flex-col">
+  <h1 className="text-sm font-semibold text-gray-900">Tony Stark</h1>
+  <h2 className="text-xs text-gray-500">username@gmail.com</h2>
+  <span className={`${baseClass} ${roleClass}`}>
+      Role: <span className="uppercase mx-1">{role}</span>
+    </span>
+</div>
+
+        </section>
+
+        
       </SidebarHeader>
-      <SidebarContent>
+
+      <SidebarContent className="overflow-x-hidden">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-lg">
+          <SidebarGroupLabel className="text-lg capitalize">
             Admin Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent className="ml-4">
@@ -141,9 +177,7 @@ export function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-lg">
+          <SidebarGroupLabel className="text-lg capitalize">
             Agent Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent className="ml-4">
@@ -160,9 +194,7 @@ export function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-lg">
+          <SidebarGroupLabel className="text-lg capitalize">
             User Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent className="ml-4">
@@ -181,6 +213,13 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter>
+        <Button variant="destructive">
+          <Link to="/login" className="w-full">Logout</Link>
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   );
 }
+

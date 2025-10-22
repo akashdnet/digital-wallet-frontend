@@ -3,17 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 
 
-
 export const formSchema = z.object({
-  phone: z.string().regex(/^01[0-9]{9}$/, {
-    message: "Invalid BD phone number",
-  }),
-    amount: z
-    .string()
-    .regex(/^\d+(\.\d{1,2})?$/, "Amount must be a valid positive number.")
-    .refine((val) => parseFloat(val) > 0, {
-      message: "Amount must be greater than 0",
-    }),
+  email: z.email({ message: "Invalid email address" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
 })
 
 
@@ -21,8 +13,8 @@ export function useValidationForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      phone: "",
-      amount: "",
+      email: "",
+      password: "",
     },
   })
 

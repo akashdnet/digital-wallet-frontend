@@ -6,8 +6,8 @@ export interface TInvoice {
   to: string;
   date: string;
   status: "active" | "pending" | "block";
-  name: string;   
-  email: string;  
+  name: string;
+  email: string;
 }
 
 export const invoices: TInvoice[] = [
@@ -17,10 +17,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "250.00",
     method: "Top up",
     to: "01712345678",
-    date: "2025-10-01",
+    date: "2025-01-05",
     status: "active",
-    name: "Abdullah",
-    email: "abdullah@example.com",
+    name: "Tony Stark",
+    email: "ironman@avengers.com",
   },
   {
     invoice: "TXID002",
@@ -28,10 +28,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "150.00",
     method: "Cash in",
     to: "01898765432",
-    date: "2025-10-03",
+    date: "2025-01-20",
     status: "pending",
-    name: "Rahim Uddin",
-    email: "rahim@example.com",
+    name: "Steve Rogers",
+    email: "captain@avengers.com",
   },
   {
     invoice: "TXID003",
@@ -39,10 +39,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "350.00",
     method: "Cash out",
     to: "01911223344",
-    date: "2025-10-05",
+    date: "2025-02-12",
     status: "block",
-    name: "Karim Ali",
-    email: "karim@example.com",
+    name: "Natasha Romanoff",
+    email: "blackwidow@avengers.com",
   },
   {
     invoice: "TXID004",
@@ -50,10 +50,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "450.00",
     method: "Top up",
     to: "01655667788",
-    date: "2025-10-07",
+    date: "2025-03-03",
     status: "active",
-    name: "Hasan Mahmud",
-    email: "hasan@example.com",
+    name: "Thor Odinson",
+    email: "thor@asgard.com",
   },
   {
     invoice: "TXID005",
@@ -61,10 +61,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "550.00",
     method: "Cash in",
     to: "01599887766",
-    date: "2025-10-10",
+    date: "2025-03-10",
     status: "active",
-    name: "Sadia Akter",
-    email: "sadia@example.com",
+    name: "Bruce Banner",
+    email: "hulk@avengers.com",
   },
   {
     invoice: "TXID006",
@@ -72,10 +72,10 @@ export const invoices: TInvoice[] = [
     totalAmount: "200.00",
     method: "Cash out",
     to: "01344556677",
-    date: "2025-10-12",
+    date: "2025-03-18",
     status: "pending",
-    name: "Nayeem Khan",
-    email: "nayeem@example.com",
+    name: "Clint Barton",
+    email: "hawkeye@avengers.com",
   },
   {
     invoice: "TXID007",
@@ -83,9 +83,42 @@ export const invoices: TInvoice[] = [
     totalAmount: "300.00",
     method: "Top up",
     to: "01422334455",
-    date: "2025-10-15",
+    date: "2025-03-25",
     status: "block",
-    name: "Mitu Rahman",
-    email: "mitu@example.com",
+    name: "Wanda Maximoff",
+    email: "scarletwitch@avengers.com",
+  },
+  {
+    invoice: "TXID008",
+    paymentStatus: "Paid",
+    totalAmount: "400.00",
+    method: "Cash in",
+    to: "01744556677",
+    date: "2025-04-05",
+    status: "active",
+    name: "Peter Parker",
+    email: "spiderman@marvel.com",
+  },
+  {
+    invoice: "TXID009",
+    paymentStatus: "Pending",
+    totalAmount: "220.00",
+    method: "Cash out",
+    to: "01855667788",
+    date: "2025-04-15",
+    status: "pending",
+    name: "Stephen Strange",
+    email: "doctorstrange@marvel.com",
+  },
+  {
+    invoice: "TXID010",
+    paymentStatus: "Unpaid",
+    totalAmount: "330.00",
+    method: "Top up",
+    to: "01966778899",
+    date: "2025-04-28",
+    status: "block",
+    name: "T'Challa",
+    email: "blackpanther@wakanda.com",
   },
 ];
