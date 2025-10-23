@@ -6,28 +6,37 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import type { TInvoice } from "@/utils/constant";
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Props {
-  data: TInvoice[];
-  title: string;
+  data: {
+    role: "user" | "agent"
+    total: number;
+    breakdown: {
+      active: number;
+      pending: number;
+      blocked: number;
+    };
+  }
 }
 
-export default function StatusPieChart({ data, title }: Props) {
+export default function StatusPieChart({ data }: Props) {
   
-  const activeCount = data.filter((d) => d.status === "active").length;
-  const pendingCount = data.filter((d) => d.status === "pending").length;
-  const blockCount = data.filter((d) => d.status === "block").length;
+  const title = data?.role === "user" ? "All User Status Distribution" : "All Agent Status Distribution"
+  const { active, pending, blocked } = data?.breakdown;
+ 
+
+
+
 
   const chartData = {
     labels: ["Active", "Pending", "Block"],
     datasets: [
       {
         label: "Users",
-        data: [activeCount, pendingCount, blockCount],
+        data: [active, pending, blocked],
         backgroundColor: [
           "rgba(34,197,94,0.7)",   
           "rgba(234,179,8,0.7)",   

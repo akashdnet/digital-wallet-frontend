@@ -12,10 +12,11 @@ import { TbCurrencyTaka } from "react-icons/tb";
 
 interface props{
     data: TInvoice[]
+    isLoading: boolean
 }
 
 
-export default function TableData({data}:props) {
+export default function TableData({data, isLoading}:props) {
   return (
     <Table>
         <TableHeader>

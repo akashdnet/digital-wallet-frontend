@@ -1,43 +1,38 @@
-import { FaUsers, FaUserTie, FaMoneyCheckAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import StatCard from "./StatCard";
 
-const data = [
-  {
-    icon: FaUsers,
-    title: "Total User",
-    value: "1,245",
-    color: "text-blue-600",
-  },
-  {
-    icon: FaUserTie,
-    title: "Total Agent",
-    value: "320",
-    color: "text-green-600",
-  },
-  {
-    icon: FaMoneyCheckAlt,
-    title: "Total Transaction",
-    value: "8,540",
-    color: "text-purple-600",
-  },
-];
+export const CardsComponent = ({ data }: { data: any }) => {
 
-export const CardsComponent = () => {
+
+  const [cardData, setCardData] = useState([{role:"user", total:0, breakdown:{}},{role:"agent", total:0, breakdown:{}}, {role:"transaction", total:0}])
+
+  
+// console.log(first)
+useEffect(() => {
+  if (data?.stats) {
+    setCardData([
+      ...data.stats,
+      { role: "transaction", total: data.totalTransactions }
+    ]);
+  }
+}, [data]);
+
+
+
+
+
+   
+
+  
+
+
   return (
     <section>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        {data.map((item, index) => (
-          <StatCard
-            key={index}
-            icon={item.icon}
-            title={item.title}
-            value={item.value}
-            color={item.color}
-          />
+        {cardData?.map((c, i) => (
+          <StatCard key={i} data={c} />
         ))}
       </div>
     </section>
   );
 };
-
-export default StatCard;

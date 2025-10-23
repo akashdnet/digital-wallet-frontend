@@ -8,6 +8,6 @@ export const baseApi = createApi({
   //     baseUrl: config.baseUrl,
   //     credentials: "include",
   //   }),
-  tagTypes: ["USER", "transactions"],
+  tagTypes: ["USER", "transactions", "pending-users", "pending-agents", "dashboard-overview", "all-transactions", "user-list"],
   endpoints: () => ({}),
 });

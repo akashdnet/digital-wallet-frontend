@@ -1,68 +1,48 @@
 import { Button } from "@/components/ui/button"
-
 import { useSearchParams } from "react-router-dom"
-
-
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 import { useMyTransactionsQuery } from "@/redux/features/profile/profile.api"
 
 export default function TableComponent() {
-
-    
-  
-
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const page = parseInt(searchParams.get("page") || "1", 10)
-  const limit = parseInt(searchParams.get("limit") || "5", 10)
-  const term = searchParams.get("term")?.toLowerCase() || ""
-
-
-  const { data, isLoading, isError, error } = useMyTransactionsQuery({ page, limit, term })
-
-
-      const transactions = data?.data
-      const meta = data?.meta
-
-      console.log(data)
-
-
   
-  const filteredInvoices = transactions?.filter(
-    (inv:any) =>
-      inv.invoice.toLowerCase().includes(term) ||
-      inv.method.toLowerCase().includes(term) ||
-      inv.to.toLowerCase().includes(term)
-  )
+  const getParam = (key: string, fallback: string) => searchParams.get(key) || fallback
 
-  const totalPages = Math.ceil(filteredInvoices?.length / limit)
-  const startIndex = (page - 1) * limit
-  const currentRows = filteredInvoices?.slice(startIndex, startIndex + limit)
+  const page = parseInt(getParam("page", "1"), 10)
+  const limit = parseInt(getParam("limit", "5"), 10)
+  const term = getParam("term", "").toLowerCase()
+
+ 
+  const { data, isLoading, isError, error } = useMyTransactionsQuery({page, limit, term, })
+
+  const transactions = data?.transactions || []
+  const meta = data?.meta
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), limit: String(limit), term })
   }
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: any) => {
     const value = e.target.value
-    if (value) {
-      setSearchParams({ page: "1", limit: String(limit), term: value })
-    } else {
-      setSearchParams({ page: "1", limit: String(limit) })
-    }
+    setSearchParams({
+      page: "1",
+      limit: String(limit),
+      ...(value ? { term: value } : {}),
+    })
   }
 
   return (
     <div className="w-full max-w-5xl mx-auto p-3 md:p-4 bg-white shadow-md rounded-xl space-y-4">
-      
-      <TableSearch term={term} handleSearchChange={handleSearchChange}/>
 
+      {isError && <h1 className="text-center text-red-600 font-semibold text-xl ">{JSON.stringify(error)}</h1> }
+      <TableSearch term={term} handleSearchChange={handleSearchChange} />
 
-      <TableData data={currentRows} />
+      <TableData data={transactions} isLoading={isLoading} />
 
-      
       <div className="flex gap-4 border-t pt-4 justify-between items-center md:flex-row flex-col">
+        {/* 🔹 Rows per page */}
         <div className="flex items-center gap-2">
           <label htmlFor="limit" className="text-sm text-gray-600">
             Rows per page:
@@ -76,14 +56,13 @@ export default function TableComponent() {
             }
           >
             <option value="5">5</option>
-            <option value="5">7</option>
+            <option value="7">7</option>
             <option value="10">10</option>
           </select>
         </div>
 
-       
-
-        <div className="flex items-center gap-2 justify-end ">
+        {/* 🔹 Pagination */}
+        <div className="flex items-center gap-2 justify-end">
           <Button
             variant="outline"
             size="sm"
@@ -93,25 +72,14 @@ export default function TableComponent() {
             Previous
           </Button>
 
-
-
-
-
- <div className="text-sm text-gray-600 text-center">
-          Page {page} of {totalPages || 1}
-        </div>
-
-
-
-
-
-
-
+          <div className="text-sm text-gray-600 text-center">
+            Page {page} of {meta?.totalPages || 1}
+          </div>
 
           <Button
             variant="outline"
             size="sm"
-            disabled={page === totalPages || totalPages === 0}
+            disabled={page === meta?.totalPages || !meta?.totalPages}
             onClick={() => handlePageChange(page + 1)}
           >
             Next

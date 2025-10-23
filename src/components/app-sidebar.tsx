@@ -88,8 +88,8 @@ const admin_nav = [
     icon: LuLayoutDashboard,
   },
   {
-    title: "Transitions",
-    url: "/dashboard/transitions",
+    title: "All Transitions",
+    url: "/dashboard/all-transitions",
     icon: BiTransferAlt,
   },
 

@@ -1,31 +1,32 @@
 import { Button } from "@/components/ui/button"
-
 import { useSearchParams } from "react-router-dom"
-
-import { invoices as rowInvoices } from "@/utils/constant"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
+import { usePendingAgentQuery } from "@/redux/features/admin/admin.api"
+
+
+
+
+
+
 
 export default function TableComponent() {
-  const filterInvoices = rowInvoices.filter((d, _) => d.status == "pending")
-
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const page = parseInt(searchParams.get("page") || "1", 10)
-  const limit = parseInt(searchParams.get("limit") || "3", 10)
-  const term = searchParams.get("term")?.toLowerCase() || ""
+  
+  const getParam = (key: string, fallback: string) => searchParams.get(key) || fallback
+
+  const page = parseInt(getParam("page", "1"), 10)
+  const limit = parseInt(getParam("limit", "5"), 10)
+  const term = getParam("term", "").toLowerCase()
 
   
-  const filteredInvoices = filterInvoices.filter(
-    (inv) =>
-      inv.invoice.toLowerCase().includes(term) ||
-      inv.method.toLowerCase().includes(term) ||
-      inv.to.toLowerCase().includes(term)
-  )
-
-  const totalPages = Math.ceil(filteredInvoices.length / limit)
-  const startIndex = (page - 1) * limit
-  const currentRows = filteredInvoices.slice(startIndex, startIndex + limit)
+  const { data, isLoading, isError, error } = usePendingAgentQuery({page, limit, term})
+  
+  const users = data?.data || []
+  const meta = data?.meta
+  // console.log(`pending users`,data)
+  // console.log(`pending users`,users)
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), limit: String(limit), term })
@@ -33,35 +34,33 @@ export default function TableComponent() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    if (value) {
-      setSearchParams({ page: "1", limit: String(limit), term: value })
-    } else {
-      setSearchParams({ page: "1", limit: String(limit) })
-    }
+    setSearchParams({
+      page: "1",
+      limit: String(limit),
+      ...(value ? { term: value } : {}),
+    })
   }
 
   return (
     <div className="w-full max-w-5xl mx-auto p-3 md:p-4 bg-white shadow-md rounded-xl space-y-4">
-      
-      <TableSearch term={term} handleSearchChange={handleSearchChange}/>
+      {isError && (
+        <h1 className="text-center text-red-600 font-semibold text-xl">
+          {(error as any)?.data?.message || "Something went wrong"}
+        </h1>
+      )}
 
+      <TableSearch term={term} handleSearchChange={handleSearchChange} />
 
-      <TableData data={currentRows} />
+      <TableData data={users} isLoading={isLoading} />
 
-      
-
-
-
-
-
-
-      {/* footer  */}
       <div className="flex gap-4 border-t pt-4 justify-between items-center md:flex-row flex-col">
+
         <div className="flex items-center gap-2">
           <label htmlFor="limit" className="text-sm text-gray-600">
             Rows per page:
           </label>
           <select
+            
             id="limit"
             className="border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={limit}
@@ -69,17 +68,14 @@ export default function TableComponent() {
               setSearchParams({ page: "1", limit: e.target.value, term })
             }
           >
-            <option value="3">3</option>
             <option value="5">5</option>
-            <option value="10">10</option>
+            <option value="7">7</option>
+            <option  value="10">10</option>
           </select>
         </div>
 
-       
 
-
-
-        <div className="flex items-center gap-2 justify-end ">
+        <div className="flex items-center gap-2 justify-end">
           <Button
             variant="outline"
             size="sm"
@@ -89,25 +85,14 @@ export default function TableComponent() {
             Previous
           </Button>
 
-
-
-
-
- <div className="text-sm text-gray-600 text-center">
-          Page {page} of {totalPages || 1}
-        </div>
-
-
-
-
-
-
-
+          <div className="text-sm text-gray-600 text-center">
+            Page {page} of {meta?.totalPages || 1}
+          </div>
 
           <Button
             variant="outline"
             size="sm"
-            disabled={page === totalPages || totalPages === 0}
+            disabled={page === meta?.totalPages || !meta?.totalPages}
             onClick={() => handlePageChange(page + 1)}
           >
             Next

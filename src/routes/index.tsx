@@ -2,6 +2,7 @@ import App from "@/App";
 import AdminLayout from "@/components/layouts/AdminLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import AgentManagementPage from "@/components/modules/agent-management/AgentManagementPage";
+import AllTransitionPage from "@/components/modules/all-transitions/AllTransitionPage";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
 import CashoutPage from "@/components/modules/cash-out/CashoutPage";
 import LoginPage from "@/components/modules/login/LoginPage";
@@ -54,6 +55,10 @@ export let router = createBrowserRouter([
       {
         path: "profile",
         Component: ProfilePage,
+      },
+      {
+        path: "all-transitions",
+        Component: AllTransitionPage,
       },
       {
         path: "transitions",
