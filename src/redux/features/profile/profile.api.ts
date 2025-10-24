@@ -25,10 +25,34 @@ export const profileApi = baseApi.injectEndpoints({
   providesTags: ["transactions"],
 }),
 
+    updateProfile: builder.mutation({
+    query: ({data}) => {
+      return {
+        url: `/user/me`,
+        method: "PATCH",
+        data,
+      };
+    },
+    invalidatesTags: ["USER"],
+  }),
+
+    changePassword: builder.mutation({
+    query: (data) => {
+      return {
+        url: `/user/change-password`,
+        method: "PATCH",
+        data,
+      };
+    },
+
+  }),
+
   }),
 });
 
 export const {
   useUserInfoQuery,
   useMyTransactionsQuery,
+  useUpdateProfileMutation,
+  useChangePasswordMutation,
 } = profileApi;

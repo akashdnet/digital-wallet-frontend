@@ -6,23 +6,49 @@ import {
 } from "@/components/ui/form"
 import TextFomField from "@/components/TextFomField"
 import { formSchema, useValidationForm } from "./PasswordFormValidation";
+import { useChangePasswordMutation } from "@/redux/features/profile/profile.api";
+import { toast } from "sonner";
+import { useState } from "react";
 
 
 
 
 
 interface props {
-    handleUpdateProfile: any;
+    onFormClose: any;
 }
 
 
 
-export function FormComponent({handleUpdateProfile}:props) {
+export function FormComponent({onFormClose}:props) {
+  const [loading, setLoading] = useState(false);
+
+
+  const [changePassword] = useChangePasswordMutation()
+
+
     const form = useValidationForm()
  
   
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
+    console.log(`password compo: `,values)
+
+ 
+     setLoading(true);
+    const loadingID = toast.loading(`Changed password...`);
+    try {
+      await changePassword(values).unwrap();
+      setLoading(false);
+      toast.success(`Password has been changed successfully.`, {id: loadingID});
+      onFormClose("none")
+
+    } catch (error: any) {
+      toast.error(`Failed to change password.`, {id: loadingID});
+      console.error("Failed to change password:", error);
+      setLoading(false);
+    } 
+
   }
 
 
@@ -39,14 +65,14 @@ export function FormComponent({handleUpdateProfile}:props) {
 
           <TextFomField
           form={form}
-          name="old_password"
+          name="oldPassword"
           label="Old Password"
           placeholder=""   
           />
           
           <TextFomField
           form={form}
-          name="new_password"
+          name="newPassword"
           label="New Password"
           placeholder=""   
           />
@@ -62,8 +88,8 @@ export function FormComponent({handleUpdateProfile}:props) {
 
 
         <div className="flex flex-col gap-4 justify-stretch">
-            <Button type="submit">Submit</Button>
-        <Button type="button" onClick={()=> handleUpdateProfile("none")} variant="outline">Cancel</Button>
+            <Button disabled={loading} type="submit">{ loading ? "Submitting..." : "Submit"}</Button>
+        <Button type="button" onClick={()=> onFormClose("none")} variant="outline">Cancel</Button>
         </div>
       </form>
     </Form>

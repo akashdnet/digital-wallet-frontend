@@ -27,6 +27,10 @@ export const formSchema = z.object({
       message: "Invalid BD phone number",
     })
     .optional(),
+    balance: z.string().regex(/^\d+(\.\d{1,2})?$/, "Amount must be a valid positive number.")
+        .refine((val) => parseFloat(val) > 0, {
+          message: "Amount must be greater than 0",
+        }),
   password: z.string().optional(),
 });
 
@@ -41,6 +45,7 @@ export function useValidationForm(data: any) {
       name: data?.name || "",
       email: data?.email || "",
       phone: data?.phone || "",
+       balance: data?.wallet?.balance || 0,
       password: "",
     },
   });

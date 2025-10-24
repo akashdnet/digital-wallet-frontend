@@ -53,7 +53,7 @@ export function FormComponent({onModalClose, data}:props) {
 
 
 
-
+        {/* <h1>{data?.wallet?.balance}</h1> */}
 
 
           <TextFomField
@@ -76,6 +76,17 @@ export function FormComponent({onModalClose, data}:props) {
           label="BD Phone Number"
           placeholder="01xxxxxxxxx"   
           />
+
+
+
+          <TextFomField
+          form={form}
+          name="balance"
+          label="Balance"
+          placeholder="minimum balance 0"   
+          />
+
+
 
           <TextFomField
           form={form}

@@ -6,34 +6,71 @@ import {
 } from "@/components/ui/form"
 import TextFomField from "@/components/TextFomField"
 import { formSchema, useValidationForm } from "./ProfileFormValidation"
+import { useState } from "react"
+import ImageInputComponent from "@/components/ImageInputComponent"
+import { toast } from "sonner"
+import { useUpdateProfileMutation } from "@/redux/features/profile/profile.api"
 
 
 
 
 
 interface props {
-    handleUpdateProfile: any;
+    onFormClose: any;
+    data: any;
 }
 
 
 
-export function FormComponent({handleUpdateProfile}:props) {
-    const form = useValidationForm()
+export function FormComponent({onFormClose, data}:props) {
+
+  const [loading, setLoading] = useState(false);
+
+  const [updateProfile] = useUpdateProfileMutation();
+
+   const [file, setFile] = useState<any>(null);
+    const form = useValidationForm(data)
+
  
   
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
+    const formData = new FormData();
+
+    formData.append("data", JSON.stringify(values));
+    if(file){
+      formData.append("file", file);
+      console.log(`image data:`, file)
+    }
+
+     setLoading(true);
+    const loadingID = toast.loading(`Updating...`);
+    try {
+      await updateProfile({data:formData, userID:data._id}).unwrap();
+      setLoading(false);
+      toast.success(`User Profile has been Updated successfully.`, {id: loadingID});
+      onFormClose("none")
+
+    } catch (error: any) {
+      toast.error(`Failed to update User Profile.`, {id: loadingID});
+      console.error("User Profile update error:", error);
+      setLoading(false);
+    } 
+
   }
 
 
   return (
-    <section className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-xl space-y-8">
-        <h1 className="text-lg font-semibold">Update your information</h1>
+    <section className="max-w-md mx-auto px-6 pb-4  bg-white shadow-lg rounded-xl   ">
         <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 
 
 
+         <ImageInputComponent
+          imageLink={data?.avatar}
+          onFileHandle={(file) => setFile(file)}
+        />
 
 
 
@@ -61,9 +98,9 @@ export function FormComponent({handleUpdateProfile}:props) {
 
 
 
-        <div className="flex flex-col gap-4 justify-stretch">
-            <Button type="submit">Submit</Button>
-        <Button type="button" onClick={()=> handleUpdateProfile("none")} variant="outline">Cancel</Button>
+        <div className="flex flex-col gap-4 justify-stretch mt-10">
+            <Button disabled={loading} type="submit">{ loading ? "Updating..." : "Update"}</Button>
+        <Button type="button" onClick={()=> onFormClose("none")} variant="outline">Cancel</Button>
         </div>
       </form>
     </Form>

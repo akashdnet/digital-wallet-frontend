@@ -4,6 +4,7 @@ import { z } from "zod"
 
 
 export const formSchema = z.object({
+  id: z.string("ID is required"),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email"),
   phone: z.string().regex(/^01[0-9]{9}$/, {
@@ -12,13 +13,15 @@ export const formSchema = z.object({
 })
 
 
-export function useValidationForm() {
+export function useValidationForm(data:any) {
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
+      id: data?._id || "",
+      name: data?.name || "",
+      email: data?.email ||"",
+      phone: data?.phone ||"",
     },
   })
 

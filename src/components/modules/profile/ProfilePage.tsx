@@ -6,40 +6,41 @@ import { FormComponent as PasswordFormComponent } from "./PasswordFormComponent"
 import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
 
 
-export type TUpdateProfile = "none" | "update" | "pass"
+export type TFromClose = "none" | "update" | "pass"
 
 
 export default function ProfilePage() {
-  const [updateProfile, setUpdateProfile] = useState<TUpdateProfile>("none");
+  const [formClose, setFormClose] = useState("none");
 
   
     const { data } = useUserInfoQuery(undefined)
     const userInfo = data?.data?.userInfo
     const transactions = data?.data?.transactions
 
-  const handleUpdateProfile = (value:TUpdateProfile) => {
-    setUpdateProfile(value);
+
+  const handleFormClose = (value:TFromClose) => {
+    setFormClose(value);
   };
 
   return (
-    <section className="space-y-8 max-w-6xl mx-auto p-6">
+    <section className=" max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-gray-800 border-b pb-3">
-        Profile Manager
+        {formClose == "none" ? "Profile Manager": formClose == "update" ? "Update your profile information" : "Change your password"}
       </h1>
 
 
 
 
-      {updateProfile == "update" && <ProfileFormComponent handleUpdateProfile={handleUpdateProfile} />}
-      {updateProfile == "pass" && <PasswordFormComponent handleUpdateProfile={handleUpdateProfile} />}
+      {formClose == "update" && <ProfileFormComponent data={userInfo} onFormClose={handleFormClose} />}
+      {formClose == "pass" && <PasswordFormComponent onFormClose={handleFormClose}  />}
 
 
 
 
-      { updateProfile == "none" && <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      { formClose == "none" && <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <div className="lg:col-span-1">
-          <InfoComponent handleUpdateProfile={handleUpdateProfile} data={userInfo}/>
+          <InfoComponent onFormClose={handleFormClose} data={userInfo}/>
         </div>
 
 

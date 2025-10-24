@@ -3,11 +3,11 @@ import { RxAvatar } from "react-icons/rx";
 
 
 interface props {
-    handleUpdateProfile: any;
+    onFormClose: any;
     data: any
 }
 
-export default function InfoComponent({handleUpdateProfile, data}:props) {
+export default function InfoComponent({onFormClose, data}:props) {
   console.log(data)
   return (
     <div className="max-w-md mx-auto md:p-6 p-3 bg-white shadow-lg rounded-xl space-y-8">
@@ -44,8 +44,8 @@ export default function InfoComponent({handleUpdateProfile, data}:props) {
           <span className="text-gray-900">{data?.phone}</span>
         </div>
        <div className="mt-4 space-y-1">
-         <Button onClick={()=> handleUpdateProfile("update")} className="w-full ">Update Profile</Button>
-        <Button onClick={()=>handleUpdateProfile("pass")} className="w-full ">Change Password</Button>
+         <Button onClick={()=> onFormClose("update")} className="w-full ">Update Profile</Button>
+        <Button onClick={()=> onFormClose("pass")} className="w-full ">Change Password</Button>
        </div>
       </div>
 

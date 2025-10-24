@@ -47,7 +47,7 @@ export function FormComponent({onModalClose, data}:props) {
 
   return (
     <section className="w-full mx-auto   space-y-8">
-        <h1 className="text-lg font-semibold">Update <span className="uppercase font-extrabold mx-2">USER</span> information</h1>
+        <h1 className="text-lg font-semibold">Update <span className="uppercase font-extrabold mx-2">Agent</span> information</h1>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 
@@ -76,6 +76,21 @@ export function FormComponent({onModalClose, data}:props) {
           label="BD Phone Number"
           placeholder="01xxxxxxxxx"   
           />
+
+
+
+
+
+         <TextFomField
+                  form={form}
+                  name="balance"
+                  label="Balance"
+                  placeholder="minimum balance 0"   
+                  />
+
+
+
+
 
           <TextFomField
           form={form}
