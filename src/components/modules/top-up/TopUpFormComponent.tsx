@@ -8,7 +8,7 @@ import {
 import { useTopUpMutation } from "@/redux/features/wallet/wallet.api"
 import { useState } from "react"
 import { toast } from "sonner"
-import { formSchema, useValidationForm } from "./TopupFormValidation"
+import { formSchema, useValidationForm } from "./TopUpFormValidation"
 
 
 

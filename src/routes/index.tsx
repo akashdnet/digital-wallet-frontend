@@ -16,7 +16,8 @@ import PendingUserPage from "@/components/modules/pending-user/PendingUserPage";
 import ProfilePage from "@/components/modules/profile/ProfilePage";
 import SendMoneyPage from "@/components/modules/send-money/SendMoneyPage";
 import SignupPage from "@/components/modules/sign-up/SignupPage";
-import TopupPage from "@/components/modules/top-up/TopupPage";
+import TopUpPage from "@/components/modules/top-up/TopUpPage";
+
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
 import UserManagementPage from "@/components/modules/user-management/UserManagementPage";
 import { Button } from "@/components/ui/button";
@@ -110,7 +111,7 @@ errorElement: <ErrorPage />,
       path: "top-up",
       element: (
         <ProtectedRoute allowedRoles={["user"]}>
-          <TopupPage />
+          <TopUpPage />
         </ProtectedRoute>
       ),
     },

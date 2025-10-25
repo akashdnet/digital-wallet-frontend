@@ -1,11 +1,10 @@
-import { FormComponent } from "./TopupFormComponent";
-
-;
+import { FormComponent } from "./TopUpFormComponent";
 
 
 
 
-export default function TopupPage() {
+
+export default function TopUpPage() {
 
 
   return (
