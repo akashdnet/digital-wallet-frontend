@@ -184,9 +184,9 @@ errorElement: <ErrorPage />,
 
 
 
-function Test ({t}:{t:string}){
-    return (<h1 className="text-3xl font-bold underline text-center">this is {t} page</h1>)
-}
+// function Test ({t}:{t:string}){
+//     return (<h1 className="text-3xl font-bold underline text-center">this is {t} page</h1>)
+// }
 
 
 
