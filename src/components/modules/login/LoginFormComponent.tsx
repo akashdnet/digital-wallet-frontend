@@ -9,6 +9,8 @@ import { formSchema, useValidationForm } from "./LoginFormValidation"
 import { Link, useNavigate } from "react-router-dom"
 import { useLoginMutation } from "@/redux/features/auth/auth.api"
 import { toast } from "sonner"
+import LoadingPage from "../LoadingPage"
+import { useAuth } from "@/hooks/useAuth"
 
 
 
@@ -21,21 +23,28 @@ interface props {
 
 
 export function FormComponent({}:props) {
+  
+  const navigate = useNavigate();
+
+
+
+  
     const form = useValidationForm();
      const [login] = useLoginMutation();
-     const navigate = useNavigate();
+
+
+
+
+
   
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const loadingID = toast.loading("Loading...");
     try {
-      const res = await login(data).unwrap();
-      if(res.success){
-        toast.success(res.message, {id: loadingID})
+      await login(data).unwrap();
+      
+        toast.success("Login Successful", {id: loadingID})
         navigate("/dashboard/profile")
-      }else{
-        toast.error(res.message, {id: loadingID})
-      }
-      console.log(res);
+      
     } catch (error:any) {
       toast.error(error.data.message, {id: loadingID})
       console.log(error)
@@ -73,7 +82,7 @@ export function FormComponent({}:props) {
 
 
         <div className="flex flex-col gap-4 justify-stretch text-right text-gray-500">
-          <h1> Do not have an account? <span className="text-blue-500"> <Link to="/signup">Sign Up</Link></span></h1>
+          <h1> Do not have an account? <span className="text-blue-500"> <Link to="/sign-up">Sign Up</Link></span></h1>
             <Button type="submit">Submit</Button>
         </div>
       </form>

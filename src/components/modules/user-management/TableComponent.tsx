@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 import { useUserListQuery } from "@/redux/features/admin/admin.api"
+import LoadingPage from "../LoadingPage"
 
 
 
@@ -22,6 +23,13 @@ export default function TableComponent() {
 
   
   const { data, isLoading, isError, error } = useUserListQuery({page, limit, term})
+
+
+
+
+  if(isLoading){
+          return <LoadingPage/>
+        }
   
   const users = data?.data || []
   const meta = data?.meta

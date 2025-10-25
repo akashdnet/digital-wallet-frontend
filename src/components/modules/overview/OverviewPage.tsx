@@ -3,14 +3,19 @@ import { CardsComponent } from "./CardsComponent";
 import StatusPieChart from "./ChartComponent";
 import BarChart from "./BarChart";
 import { useDashboardOverviewQuery } from "@/redux/features/admin/admin.api";
+import LoadingPage from "../LoadingPage";
 
 export default function OverviewPage() {
 
-  const { data, isError, error} = useDashboardOverviewQuery(undefined)
+  const { data, isError, error, isLoading} = useDashboardOverviewQuery(undefined)
   const new_data = data?.data
-  console.log(`data : `,new_data)
-  console.log(error)
+  // console.log(`data : `,new_data)
+  // console.log(error)
 
+
+  if(isLoading){
+    return <LoadingPage/>
+  }
 
   const pichartData = new_data?.stats
   const barChartData = new_data?.monthlyStats

@@ -45,7 +45,7 @@ export function useValidationForm(data: any) {
       name: data?.name || "",
       email: data?.email || "",
       phone: data?.phone || "",
-      balance: data?.wallet?.balance || 0,
+      balance: String(data?.wallet?.balance) || "",
       password: "",
     },
   });

@@ -4,7 +4,7 @@ import { z } from "zod"
 
 
 export const formSchema = z.object({
-   send: z.union([
+   to: z.union([
     z.string().regex(/^01[0-9]{9}$/, {
       message: "Invalid BD phone number",
     }),
@@ -23,7 +23,7 @@ export function useValidationForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      send: "",
+      to: "",
       amount: "",
     },
   })

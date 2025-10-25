@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 import { useMyTransactionsQuery } from "@/redux/features/profile/profile.api"
+import LoadingPage from "../LoadingPage"
 
 export default function TableComponent() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -17,8 +18,27 @@ export default function TableComponent() {
  
   const { data, isLoading, isError, error } = useMyTransactionsQuery({page, limit, term, })
 
-  const transactions = data?.transactions || []
+
+  // console.log(`admin all transaction`, data)  
+
+  const transactions = data?.data || []
   const meta = data?.meta
+
+
+
+
+
+  if(isLoading){
+          return <LoadingPage/>
+        }
+
+
+
+
+
+
+
+
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), limit: String(limit), term })

@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 import { usePendingUserQuery } from "@/redux/features/admin/admin.api"
+import LoadingPage from "../LoadingPage"
 
 
 
@@ -27,6 +28,21 @@ export default function TableComponent() {
   const meta = data?.meta
   // console.log(`pending users`,data)
   // console.log(`pending users`,users)
+
+
+
+
+
+  if(isLoading){
+          return <LoadingPage/>
+        }
+
+
+
+
+
+
+
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), limit: String(limit), term })

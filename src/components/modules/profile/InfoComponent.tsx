@@ -9,6 +9,9 @@ interface props {
 
 export default function InfoComponent({onFormClose, data}:props) {
   console.log(data)
+
+  const walletColor = data?.wallet?.status === "active" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700";
+
   return (
     <div className="max-w-md mx-auto md:p-6 p-3 bg-white shadow-lg rounded-xl space-y-8">
       <h1 className="text-lg font-semibold"> Your profile information </h1>
@@ -57,7 +60,7 @@ export default function InfoComponent({onFormClose, data}:props) {
         </div>
         <div className="flex justify-between items-center">
           <span className="text-gray-600 font-medium">Status:</span>
-          <span className="uppercase text-green-600 font-semibold">{data?.wallet?.status}</span>
+          <span className={`uppercase  font-semibold ${walletColor} px-2` }>{data?.wallet?.status}</span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-gray-600 font-medium">Balance:</span>

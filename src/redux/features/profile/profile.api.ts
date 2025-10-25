@@ -10,6 +10,12 @@ export const profileApi = baseApi.injectEndpoints({
       }),
       providesTags: ["USER"],
     }),
+
+
+
+
+
+
    myTransactions: builder.query<any,{ page?: number; limit?: number; term?: string }>({
     query: ({ page = 1, limit = 5, term = "" }) => {
         const params = new URLSearchParams();
@@ -21,9 +27,13 @@ export const profileApi = baseApi.injectEndpoints({
         url: `/transaction/my-transactions?${params.toString()}`,
         method: "GET",
         };
-  },
-  providesTags: ["transactions"],
-}),
+        },
+        providesTags: ["transactions"],
+      }),
+
+
+
+
 
     updateProfile: builder.mutation({
     query: ({data}) => {
@@ -35,6 +45,11 @@ export const profileApi = baseApi.injectEndpoints({
     },
     invalidatesTags: ["USER"],
   }),
+
+
+
+
+
 
     changePassword: builder.mutation({
     query: (data) => {

@@ -6,6 +6,9 @@ import {
 } from "@/components/ui/form"
 import TextFomField from "@/components/TextFomField"
 import { formSchema, useValidationForm } from "./CashoutFormValidation"
+import { useCashOutMutation } from "@/redux/features/wallet/wallet.api"
+import { useState } from "react"
+import { toast } from "sonner"
 
 
 
@@ -18,11 +21,33 @@ interface props {
 
 
 export function FormComponent({}:props) {
+  const [loading, setLoading] = useState(false);
+
+
+
+  const [cashOut] = useCashOutMutation();
     const form = useValidationForm()
  
   
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+
+    // console.log(`password compo: `,values)
+
+ 
+     setLoading(true);
+    const loadingID = toast.loading(`Sending...`);
+    try {
+      await cashOut(values).unwrap();
+      setLoading(false);
+      toast.success(`Cash-out has been done successfully.`, {id: loadingID});
+
+
+    } catch (error: any) {
+      toast.error(error?.data?.message, {id: loadingID});
+      console.error("Failed to cashout:", error);
+      setLoading(false);
+    } 
+
   }
 
 
@@ -39,8 +64,8 @@ export function FormComponent({}:props) {
 
           <TextFomField
           form={form}
-          name="phone"
-          label="Phone Number"
+          name="to"
+          label="Agent Phone Number"
           placeholder="01xxxxxxxxx"   
           />
           
@@ -56,7 +81,7 @@ export function FormComponent({}:props) {
 
 
         <div className="flex flex-col gap-4 justify-stretch">
-            <Button type="submit">Submit</Button>
+            <Button disabled={loading} type="submit">{ loading ? "Sending..." : "Cash Out"}</Button>
         {/* <Button type="button" onClick={()=> handleUpdateProfile("none")} variant="outline">Cancel</Button> */}
         </div>
       </form>

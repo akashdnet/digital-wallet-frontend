@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
 import { useAllTransitionQuery } from "@/redux/features/admin/admin.api"
+import LoadingPage from "../LoadingPage"
 
 export default function TableComponent() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -18,7 +19,19 @@ export default function TableComponent() {
   const { data, isLoading, isError, error } = useAllTransitionQuery({page, limit, term, })
 
 
-  console.log(`admin all transaction`, data)  
+  // console.log(`admin all transaction`, data)  
+
+
+
+
+    if(isLoading){
+        return <div className="flex-1"> <LoadingPage/></div>
+      }
+
+
+
+
+
 
   const transactions = data?.data || []
   const meta = data?.meta

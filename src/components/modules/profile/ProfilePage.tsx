@@ -45,7 +45,7 @@ export default function ProfilePage() {
 
 
         <div className="lg:col-span-1">
-          <TableComponent transactions={transactions} />
+          <TableComponent transactions={transactions} role={userInfo?.role} />
         </div>
       </div>}
     </section>

@@ -38,7 +38,7 @@ export function FormComponent({onModalClose, data}:props) {
       toast.success(`Agent Profile has been Updated successfully.`, {id: loadingID});
       onModalClose(false)
     } catch (error: any) {
-      toast.error(`Failed to update User Profile.`, {id: loadingID});
+      toast.error(error?.data?.message || "Failed to update Profile.", {id: loadingID});
       console.error("Agent Profile update error:", error);
       setLoading(false);
     } 

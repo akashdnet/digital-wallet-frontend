@@ -1,10 +1,29 @@
 
+import { useNavigate } from "react-router-dom";
+import LoadingPage from "../LoadingPage";
 import { FormComponent as LoginFormComponent } from "./LoginFormComponent";
+import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 
 
 
 export default function LoginPage() {
+
+  const navigate = useNavigate();
+    const {isLoggedIn, isLoading} = useAuth()
+    
+  
+  
+      if (isLoading) {
+              return <LoadingPage/>;
+            };
+    
+    
+    
+      if(isLoggedIn){
+        navigate("/dashboard/profile")
+      }
 
 
   return (

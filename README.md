@@ -1,75 +1,119 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# D-Wallet Frontend
 
-## React Compiler
+Hey there 👋 Welcome to the **D-Wallet Frontend** 🚀  
+This is the frontend of our Fintech app. It’s basically the frontend with dashboard where users, agents and admins can log in, check stuff, and manage their money. We’ve kept it fast, clean, and simple so you don’t get lost in a mess of buttons.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🔑 What You Can Do Here
 
-## Expanding the ESLint configuration
+### 👨‍💻 Admins
+- Get a **big picture view** of the whole system with charts and stats.  
+- Manage all users (add, edit, delete, whatever you need).  
+- Manage agents the same way.  
+- Approve, activate or block new signups and users.  
+- See every single transaction that happens on the platform.  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🧑‍💼 Agents
+- Get your own **dashboard** to track your bussiness to see transactions.  
+- Do the main money stuff: Cash In, Cash Out. 
+- Check your full transaction history.  
+- Update your profile and settings.  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🙋 Users
+- See your **account balance** and recent activity at a glance.  
+- Send money directly to other users.  
+- Manage your wallet:  
+  - Add money (Cash In / Top Up)  
+  - Take money out (Cash Out)  
+- Look back at your transaction history.  
+- Update your info or change your password.  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+
+## 🛠 Tech Stack
+
+## 🛠 Tech Stack
+
+- **Framework:** React + Vite  
+- **Language:** TypeScript  
+- **Styling:** Tailwind CSS + shadcn/ui  
+- **State Management:** Redux Toolkit  
+- **Routing:** React Router  
+- **Forms & Validation:** React Hook Form + Zod  
+- **Data Fetching:** Axios + RTK Query  
+- **Charts:** Chart.js (with react-chartjs-2)  
+- **Linting:** ESLint  
+- **Tour Guide:** react-joyride  
+  
+
+---
+
+## 📂 Project Structure
+
+```
+/src
+├── assets/              # Static assets (images, SVGs)
+├── components/
+│   ├── ui/              # Reusable UI (Button, Input, etc.)
+│   ├── layouts/         # Layouts (DashboardLayout, CommonLayout)
+│   └── modules/         # Feature-based components
+│       ├── login/       # Login page
+│       ├── overview/    # Dashboard charts & stats
+│       ├── user-management/ # Admin user management
+│       └── ...
+├── config/              # App-level configs
+├── hooks/               # Custom hooks (useAuth, useMobile)
+├── lib/                 # Utilities & Axios setup
+├── redux/               # Redux slices & store
+├── routes/              # React Router config
+└── utils/               # General helpers & constants
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- **Node.js:** 20.x or higher recommended 
+- **npm:** comes with Node.js 
+
+### Installation
+```bash
+git clone https://github.com/akashdnet/d-wallet-frontend.git
+cd d-wallet-frontend
+npm install
 ```
+
+### Run Dev Server
+```bash
+npm run dev
+```
+App will be available at: `http://localhost:3000`
+
+---
+
+## 📜 Scripts
+
+- `npm run dev` → Start dev server  
+- `npm run build` → Build for production    
+
+
+
+
+## 🔗 Live Link
+
+You can check out the live version of the project here:  
+👉 [D-Wallet Frontend Live](https://test)
+
+
+
+
+
+
+
+
