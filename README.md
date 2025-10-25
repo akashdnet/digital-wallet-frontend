@@ -84,8 +84,8 @@ This is the frontend of our Fintech app. It’s basically the frontend with dash
 
 ### Installation
 ```bash
-git clone https://github.com/akashdnet/d-wallet-frontend.git
-cd d-wallet-frontend
+git clone https://github.com/akashdnet/digital-wallet-frontend.git
+cd digital-wallet-frontend
 npm install
 ```
 
@@ -108,7 +108,7 @@ App will be available at: `http://localhost:3000`
 ## 🔗 Live Link
 
 You can check out the live version of the project here:  
-👉 [D-Wallet Frontend Live](https://test)
+👉 [D-Wallet Frontend Live](digital-wallet-frontend-alpha.vercel.app)
 
 
 
