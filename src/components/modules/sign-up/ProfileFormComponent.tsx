@@ -1,17 +1,17 @@
 import { z } from "zod"
 
+import ImageInputComponent from "@/components/ImageInputComponent"
+import RadioFormField from "@/components/RadioFormField"
+import TextFomField from "@/components/TextFomField"
 import { Button } from "@/components/ui/button"
 import {
   Form,
 } from "@/components/ui/form"
-import TextFomField from "@/components/TextFomField"
-import { formSchema, useValidationForm } from "./ProfileFormValidation"
-import { useState } from "react"
-import ImageInputComponent from "@/components/ImageInputComponent"
-import { toast } from "sonner"
 import { useRegisterMutation } from "@/redux/features/auth/auth.api"
-import RadioFormField from "@/components/RadioFormField"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+import { formSchema, useValidationForm } from "./ProfileFormValidation"
 
 
 

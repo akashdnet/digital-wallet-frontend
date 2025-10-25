@@ -1,7 +1,9 @@
 import App from "@/App";
-import DashboardLayout from "@/components/layouts/DashboardLayout";
 import CommonLayout from "@/components/layouts/CommonLayout";
+import DashboardLayout from "@/components/layouts/DashboardLayout";
+import ErrorBoundary from "@/components/layouts/ErrorBoundary";
 import { ProtectedRoute } from "@/components/layouts/ProtectedRoute";
+import AboutPage from "@/components/modules/about/AboutPage";
 import AgentManagementPage from "@/components/modules/agent-management/AgentManagementPage";
 import AllTransitionPage from "@/components/modules/all-transitions/AllTransitionPage";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
@@ -17,10 +19,8 @@ import SignupPage from "@/components/modules/sign-up/SignupPage";
 import TopupPage from "@/components/modules/top-up/TopupPage";
 import TransitionPage from "@/components/modules/transitions/TransitionPage";
 import UserManagementPage from "@/components/modules/user-management/UserManagementPage";
-import { createBrowserRouter, Link } from "react-router";
-import AboutPage from "@/components/modules/about/AboutPage";
-import ErrorBoundary from "@/components/layouts/ErrorBoundary";
 import { Button } from "@/components/ui/button";
+import { createBrowserRouter, Link } from "react-router";
 
 
 export let router = createBrowserRouter([

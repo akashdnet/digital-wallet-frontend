@@ -1,5 +1,5 @@
 
-import { FormComponent} from "./ProfileFormComponent";
+import { FormComponent } from "./ProfileFormComponent";
 
 
 

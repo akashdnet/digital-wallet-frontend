@@ -1,9 +1,9 @@
 
-import { CardsComponent } from "./CardsComponent";
-import StatusPieChart from "./ChartComponent";
-import BarChart from "./BarChart";
 import { useDashboardOverviewQuery } from "@/redux/features/admin/admin.api";
 import LoadingPage from "../LoadingPage";
+import BarChart from "./BarChart";
+import { CardsComponent } from "./CardsComponent";
+import StatusPieChart from "./ChartComponent";
 
 export default function OverviewPage() {
 

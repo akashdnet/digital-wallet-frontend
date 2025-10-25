@@ -1,6 +1,5 @@
-import { FaShieldAlt, FaBolt, FaGlobe } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import OnlinePayPng from "@/assets/online-pay.png"
+import OnlinePayPng from "@/assets/online-pay.png";
+import { FaBolt, FaGlobe, FaShieldAlt } from "react-icons/fa";
 
 
 

@@ -1,12 +1,9 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { FormComponent } from "./ProfileFormComponent";
 
 interface EditUserModalProps {

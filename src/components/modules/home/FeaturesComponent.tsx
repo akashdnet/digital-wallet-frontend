@@ -1,5 +1,4 @@
-import React from "react";
-import { FaLock, FaBolt, FaGlobe } from "react-icons/fa";
+import { FaBolt, FaGlobe, FaLock } from "react-icons/fa";
 
 const features = [
   {

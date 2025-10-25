@@ -1,10 +1,10 @@
-import { TbPhonePlus } from "react-icons/tb";
+import { BiTransferAlt } from "react-icons/bi";
 import { BsCashCoin } from "react-icons/bs";
+import { FaUserClock, FaUsers } from "react-icons/fa";
 import { GiCash } from "react-icons/gi";
 import { GrAnalytics } from "react-icons/gr";
-import { BiTransferAlt } from "react-icons/bi";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { FaUsers, FaUserClock } from "react-icons/fa";
+import { TbPhonePlus } from "react-icons/tb";
 
 import {
   Sidebar,
@@ -16,8 +16,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link } from "react-router-dom";
 import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
+import { Link } from "react-router-dom";
 import SidebarHeaderComponent from "./modules/side-bar/SidebarHeader";
 import SidebarLogoutComponent from "./modules/side-bar/SidebarLogout";
 

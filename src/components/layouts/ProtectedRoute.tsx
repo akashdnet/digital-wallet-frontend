@@ -1,7 +1,7 @@
 import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
 import type { ReactNode } from "react";
-import UnauthorizedPage from "../modules/UnauthorizedPage";
 import LoadingPage from "../modules/LoadingPage";
+import UnauthorizedPage from "../modules/UnauthorizedPage";
 
 type TRole = "user" | "agent" | "admin";
 

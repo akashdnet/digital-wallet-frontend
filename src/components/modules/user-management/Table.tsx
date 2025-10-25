@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/table";
 import { useDeleteUserMutation, useUpdateWalletStatusMutation } from "@/redux/features/admin/admin.api";
 import clsx from "clsx";
-import { toast } from "sonner";
 import { useState } from "react";
+import { toast } from "sonner";
 import EditUserModal from "./EditUserModal";
 
 interface Props {

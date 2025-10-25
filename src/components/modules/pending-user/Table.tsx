@@ -8,15 +8,15 @@ import {
 } from "@/components/ui/table";
 import { useUpdateWalletStatusMutation } from "@/redux/features/admin/admin.api";
 import clsx from "clsx";
-import { toast } from "sonner";
 import { useState } from "react";
+import { toast } from "sonner";
 
 interface Props {
    data: any;
   isLoading?: boolean;
 }
 
-export default function TableData({ data, isLoading }: Props) {
+export default function TableData({ data }: Props) {
   const [updateWalletStatus] = useUpdateWalletStatusMutation();
   const [currentlyApprovingId, setCurrentlyApprovingId] = useState<string | null>(null); 
 

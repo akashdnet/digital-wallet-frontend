@@ -1,9 +1,9 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import { Link } from 'react-router-dom'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
+import { Link } from 'react-router-dom';
 import { SidebarHeaderSkeleton } from './SidebarHeaderSkeleton';
 
 

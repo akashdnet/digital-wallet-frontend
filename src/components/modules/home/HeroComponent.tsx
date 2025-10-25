@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import OnlinePayPng from "@/assets/online-pay.png";
 import { FaArrowRight } from "react-icons/fa";
-import OnlinePayPng from "@/assets/online-pay.png"
+import { Link } from "react-router-dom";
 
 const HeroComponent = () => {
   return (

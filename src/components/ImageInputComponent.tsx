@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
-import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
+import { useFileUpload } from "@/hooks/use-file-upload"
+import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
+import { useEffect, useState } from "react"
 
 interface Props {
   onFileHandle: (file: File | null) => void

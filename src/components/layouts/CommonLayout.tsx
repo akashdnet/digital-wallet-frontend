@@ -1,14 +1,13 @@
-import { useAuth } from "@/hooks/useAuth";
-import { Link, Outlet } from "react-router-dom";
-import Header from "../modules/home/Header";
+import { Outlet } from "react-router-dom";
 import FooterComponent from "../modules/home/FooterComponent";
+import Header from "../modules/home/Header";
 
 
 
-interface TNav{
-  label: string
-  path: string
-}
+// interface TNav{
+//   label: string
+//   path: string
+// }
 
 
 
@@ -21,20 +20,20 @@ interface TNav{
 
 export default function CommonLayout() {
 
-  const {isLoggedIn, isLoading} = useAuth()
+  // const {isLoggedIn, isLoading} = useAuth()
 
 
-  const rLoading = isLoading? "" : "/login"
-  const authNav= !isLoggedIn? {label: "Login", path: rLoading } : {label: "Dashboard", path: "/dashboard"}
+  // const rLoading = isLoading? "" : "/login"
+  // const authNav= !isLoggedIn? {label: "Login", path: rLoading } : {label: "Dashboard", path: "/dashboard"}
 
-  const nav: TNav[]= [
-  {label: "Home", path: "/"},
-  {label: "About", path: "/about"},
-  {label: "Contact", path: "/contact"},
-  authNav,
+//   const nav: TNav[]= [
+//   {label: "Home", path: "/"},
+//   {label: "About", path: "/about"},
+//   {label: "Contact", path: "/contact"},
+//   authNav,
   
   
-]
+// ]
 
 
 

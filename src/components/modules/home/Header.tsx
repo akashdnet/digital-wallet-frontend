@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -6,14 +5,15 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Separator } from "@/components/ui/separator";
-import { Wallet, Menu } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { Menu, Wallet } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
 

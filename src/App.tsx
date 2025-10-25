@@ -1,6 +1,6 @@
-import HomePage from "./components/modules/home/HomePage"
 import { useState } from "react";
 import Joyride, { type Step } from "react-joyride";
+import HomePage from "./components/modules/home/HomePage";
 
 
 

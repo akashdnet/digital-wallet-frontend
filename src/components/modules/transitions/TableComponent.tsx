@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button"
+import { useMyTransactionsQuery } from "@/redux/features/profile/profile.api"
 import { useSearchParams } from "react-router-dom"
+import LoadingPage from "../LoadingPage"
 import TableData from "./Table"
 import TableSearch from "./TableSearch"
-import { useMyTransactionsQuery } from "@/redux/features/profile/profile.api"
-import LoadingPage from "../LoadingPage"
 
 export default function TableComponent() {
   const [searchParams, setSearchParams] = useSearchParams()

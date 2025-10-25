@@ -1,6 +1,6 @@
-import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface Props {
   form: any;

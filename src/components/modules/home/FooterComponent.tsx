@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Wallet } from "lucide-react";
 import {
   FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
   FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
 } from "react-icons/fa";
-import { Wallet } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function FooterComponent() {
   return (

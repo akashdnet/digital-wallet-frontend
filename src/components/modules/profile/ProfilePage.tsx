@@ -1,9 +1,9 @@
+import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
 import { useState } from "react";
 import InfoComponent from "./InfoComponent";
-import TableComponent from "./TableComponent";
-import { FormComponent as ProfileFormComponent } from "./ProfileFormComponent";
 import { FormComponent as PasswordFormComponent } from "./PasswordFormComponent";
-import { useUserInfoQuery } from "@/redux/features/profile/profile.api";
+import { FormComponent as ProfileFormComponent } from "./ProfileFormComponent";
+import TableComponent from "./TableComponent";
 
 
 export type TFromClose = "none" | "update" | "pass"

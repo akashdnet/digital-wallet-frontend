@@ -1,8 +1,8 @@
-import {  Navigate, Outlet, useNavigate } from "react-router-dom";
-import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-import { AppSidebar } from "../app-sidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { Outlet, useNavigate } from "react-router-dom";
+import { AppSidebar } from "../app-sidebar";
 import LoadingPage from "../modules/LoadingPage";
+import { SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 
 
 export default function DashboardLayout() {
