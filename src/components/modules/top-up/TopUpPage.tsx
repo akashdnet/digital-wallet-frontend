@@ -1,5 +1,6 @@
+import { FormComponent } from "./TopupFormComponent";
 
-import { FormComponent as TopupFormComponent } from "./TopupFormComponent";
+;
 
 
 
@@ -15,7 +16,7 @@ export default function TopupPage() {
 
 
 
-<TopupFormComponent/>
+<FormComponent/>
 
 
 
