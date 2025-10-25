@@ -1,4 +1,5 @@
 import App from "@/App";
+import FAQPage from "@/components/faq-page/FAQPage";
 import CommonLayout from "@/components/layouts/CommonLayout";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import ErrorBoundary from "@/components/layouts/ErrorBoundary";
@@ -8,7 +9,9 @@ import AgentManagementPage from "@/components/modules/agent-management/AgentMana
 import AllTransitionPage from "@/components/modules/all-transitions/AllTransitionPage";
 import CashinPage from "@/components/modules/cash-in/CashinPage";
 import CashoutPage from "@/components/modules/cash-out/CashoutPage";
+import ContactPage from "@/components/modules/contact-page/ContactPage";
 import DashboardPage from "@/components/modules/DashboardPage";
+import FeaturesPage from "@/components/modules/features-page/FeaturesPage";
 import LoginPage from "@/components/modules/login/LoginPage";
 import OverviewPage from "@/components/modules/overview/OverviewPage";
 import PendingAgentPage from "@/components/modules/pending-agent/PendingAgentPage";
@@ -42,8 +45,16 @@ errorElement: <ErrorPage />,
         Component: AboutPage,
       },
       {
+        path: "features",
+        Component: FeaturesPage,
+      },
+      {
+        path: "faq",
+        Component: FAQPage,
+      },
+      {
         path: "contact",
-        element: <Test t="contact"/>,
+        Component: ContactPage,
       },
       {
         path: "login",

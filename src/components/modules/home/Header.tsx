@@ -21,9 +21,10 @@ export default function Header() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Features", href: "#features" },
+    { name: "Features", href: "/features" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/#contact" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
