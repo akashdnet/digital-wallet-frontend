@@ -24,11 +24,11 @@ export function useValidationForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       
-      name: "new1",
-      email: "new1@gmail.com",
-      phone: "01500000000",
-      password: "12345678",
-      confirm_password: "12345678",
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirm_password: "",
       role: "user",
     },
   })
